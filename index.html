@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html class="h-full">
+
+<head>
+  <title>Bitcoin Core Snapshots</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/@vueuse/shared"></script>
+  <script src="https://unpkg.com/@vueuse/core"></script>
+</head>
+
+<body class="h-full bg-gray-900">
+  <div id="app" class="bg-gray-900 py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-4xl text-center">
+        <h1 class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          Bitcoin Core Snapshots
+        </h1>
+      </div>
+      <p class="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-gray-300">
+        <span class="inline-block">Get a copy of the Bitcoin blockchain at a specific point in time.</span>
+        <span class="inline-block">Used for restoring the blockchain to a particular state or for syncing new nodes faster.</span>
+      </p>
+
+      <!-- xs to lg -->
+      <div class="mx-auto mt-12 max-w-md space-y-8 sm:hidden">
+        <div class="rounded-md bg-red-50 p-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-red-800">Open this website on a larger browser.</h3>
+            </div>
+          </div>
+        </div>
+
+
+        <section class="hidden p-8">
+          <h3 id="tier-basic" class="text-sm font-semibold leading-6 text-white">Basic</h3>
+          <p class="mt-2 flex items-baseline gap-x-1">
+            <span class="text-4xl font-bold text-white">$9</span>
+            <span class="text-sm font-semibold text-gray-300">/month</span>
+          </p>
+          <a href="#" aria-describedby="tier-basic" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white">Buy plan</a>
+          <ul role="list" class="mt-10 space-y-4 text-sm leading-6 text-white">
+            <li>
+              <ul role="list" class="space-y-4">
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Integrations </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Shared links </span>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <ul role="list" class="space-y-4">
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Advanced analytics </span>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <ul role="list" class="space-y-4">
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> 24/7 online support </span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="hidden p-8 rounded-xl bg-white/5 ring-1 ring-inset ring-white/10">
+          <h3 id="tier-essential" class="text-sm font-semibold leading-6 text-white">Essential</h3>
+          <p class="mt-2 flex items-baseline gap-x-1">
+            <span class="text-4xl font-bold text-white">$29</span>
+            <span class="text-sm font-semibold text-gray-300">/month</span>
+          </p>
+          <a href="#" aria-describedby="tier-essential" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-indigo-500 text-white hover:bg-indigo-400 focus-visible:outline-indigo-500">Buy plan</a>
+          <ul role="list" class="mt-10 space-y-4 text-sm leading-6 text-white">
+            <li>
+              <ul role="list" class="space-y-4">
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Integrations </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Shared links </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Importing and exporting </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span>
+                    Team members
+                    <span class="text-sm leading-6 text-gray-400">(Up to 20 users)</span>
+                  </span>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <ul role="list" class="space-y-4">
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Advanced analytics </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Basic reports </span>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <ul role="list" class="space-y-4">
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> 24/7 online support </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Quarterly product workshops </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Priority phone support </span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="hidden p-8">
+          <h3 id="tier-premium" class="text-sm font-semibold leading-6 text-white">Premium</h3>
+          <p class="mt-2 flex items-baseline gap-x-1">
+            <span class="text-4xl font-bold text-white">$59</span>
+            <span class="text-sm font-semibold text-gray-300">/month</span>
+          </p>
+          <a href="#" aria-describedby="tier-premium" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white">Buy plan</a>
+          <ul role="list" class="mt-10 space-y-4 text-sm leading-6 text-white">
+            <li>
+              <ul role="list" class="space-y-4">
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Integrations </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Shared links </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Importing and exporting </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span>
+                    Team members
+                    <span class="text-sm leading-6 text-gray-400">(Up to 50 users)</span>
+                  </span>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <ul role="list" class="space-y-4">
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Advanced analytics </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Basic reports </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Professional reports </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Custom report builder </span>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <ul role="list" class="space-y-4">
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> 24/7 online support </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Quarterly product workshops </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> Priority phone support </span>
+                </li>
+
+                <li class="flex gap-x-3">
+                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                  <span> 1:1 onboarding tour </span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- lg+ -->
+      <div class="isolate mt-20 hidden sm:block">
+        <div class="relative -mx-8">
+          <table class="w-full table-fixed border-separate border-spacing-x-8 text-left">
+            <colgroup>
+              <col class="w-1/4">
+              <col class="w-1/4">
+              <col class="w-1/4">
+              <col class="w-1/4">
+            </colgroup>
+            <thead class="hidden">
+              <tr>
+                <td></td>
+
+                <th scope="col" class="px-6 pt-6 xl:px-8 xl:pt-8">
+                  <div class="text-sm font-semibold leading-7 text-white">height</div>
+                </th>
+
+                <th scope="col" class="px-6 pt-6 xl:px-8 xl:pt-8">
+                  <div class="text-sm font-semibold leading-7 text-white">height</div>
+                </th>
+
+                <th scope="col" class="px-6 pt-6 xl:px-8 xl:pt-8">
+                  <div class="text-sm font-semibold leading-7 text-white">height</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"></th>
+
+                <td class="px-6 pt-2 xl:px-8">
+                  <div class="hidden flex items-baseline gap-x-1 text-white">
+                    <span class="text-4xl font-bold">778,776</span>
+                  </div>
+                  <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/mainnet.zip" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-orange-500 hover:bg-orange-400 focus-visible:outline-white">
+                    Download mainnet
+                  </a>
+                </td>
+
+                <td class="px-6 pt-2 xl:px-8">
+                  <div class="hidden flex items-baseline gap-x-1 text-white">
+                    <span class="text-4xl font-bold">2,422,116</span>
+                  </div>
+                  <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/testnet.zip" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-teal-500 hover:bg-teal-400 focus-visible:outline-indigo-600">
+                    Download testnet
+                  </a>
+                </td>
+
+                <td class="px-6 pt-2 xl:px-8">
+                  <div class="hidden flex items-baseline gap-x-1 text-white">
+                    <span class="text-4xl font-bold">132,123</span>
+                  </div>
+                  <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/signet.zip" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-white">
+                    Download signet
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  &nbsp;
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">
+                    <a href="https://mempool.space/block/778776" target="_blank">
+                      <div class="flex items-center justify-center">
+                        <div class="pr-1 underline decoration-dotted">view on mempool</div>
+                        <div>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                          </svg>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">
+                    <a href="https://mempool.space/testnet/block/2422116" target="_blank">
+                      <div class="flex items-center justify-center">
+                        <div class="pr-1 underline decoration-dotted">view on mempool</div>
+                        <div>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                          </svg>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">
+                    <a href="https://mempool.space/signet/block/132123" target="_blank">
+                      <div class="flex items-center justify-center">
+                        <div class="pr-1 underline decoration-dotted">view on mempool</div>
+                        <div>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                          </svg>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="colgroup" colspan="4" class="pb-4 text-sm font-semibold leading-6 text-white pt-8">
+                  bitcoin.conf
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/10"></div>
+                </th>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  chain
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">mainnet</div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">testnet</div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">signet</div>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  prune
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">550</div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">550</div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                  </svg>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  txindex
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                  </svg>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                  </svg>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <svg class="mx-auto h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  coinstatsindex
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                  </svg>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                  </svg>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <svg class="mx-auto h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  blockfilterindex
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                  </svg>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                  </svg>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <svg class="mx-auto h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="colgroup" colspan="4" class="pb-4 text-sm font-semibold leading-6 text-white pt-16">
+                  Info
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/10"></div>
+                </th>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  size
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">5.4G</div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">1.9G</div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">762M</div>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  height
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">778,776</div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">2,422,116</div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">132,123</div>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  best block
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
+                    <span>C535 59CC 4A44 382C</span>
+                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard('000000000000000000063c1564e3c53a20798f1c9c2643b5c53559cc4a44382c')" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
+                  </div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
+                    <span>25BC 6DB5 F0A6 6C3E</span>
+                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard('000000000000001c82e8cad999c2091f31dfa7b8deae4e5925bc6db5f0a66c3e')" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
+                  </div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
+                    <span>DD55 7140 E2D2 F037</span>
+                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard('0000000f1eed65c5a5be3f37195f2f9c85b238f2bb050f44dd557140e2d2f037')" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  muhash
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
+                    <span>C535 59CC 4A44 382C</span>
+                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard('2a2475f731ab49f5d04aae3b99d41181b9d4339e98bc027ce4607acbd016ddf1')" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
+                  </div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
+                    <span>AA4A C428 2CD5 A850</span>
+                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard('4ec4f1bb97241589ca8a056a2338db5680380f2c632f3e74aa4ac4282cd5a850')" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
+                  </div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
+                    <span>DBA4 2912 94FB B832</span>
+                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard('eddbe9301e477a750d56df204218646f2328f86fe2c6e94adba4291294fbb832')" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  txouts
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">84,396,536</div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">28,527,901</div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">1,236,191</div>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  supply (sats)
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">1,930,463,875,982,740</div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">2,099,159,467,409,753</div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">660,614,999,967,400</div>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="colgroup" colspan="4" class="pb-4 text-sm font-semibold leading-6 text-white pt-16">
+                  Don't trust, verify!
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/10"></div>
+                </th>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  <span class="rounded-full bg-black/50 px-2 py-1 text-xs text-white">
+                    $ sha256sum --check sha256sum.txt
+                  </span>
+                </th>
+
+                <td scope="colgroup" colspan="3" class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">
+                    <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/sha256sum.txt" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
+                      download checksum
+                    </a>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  <span class="rounded-full bg-black/50 px-2 py-1 text-xs text-white">
+                    $ gpg --verify sha256sum.txt.asc
+                  </span>
+                </th>
+
+                <td scope="colgroup" colspan="3" class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300">
+                    <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/sha256sum.txt.asc" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
+                      download signature
+                    </a>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="mt-20 text-center text-white">
+      This project is maintained by <a href="https://jaonoct.us" target="_blank" class="font-bold underline">jaonoctus</a>.
+    </div>
+  </div>
+
+  <script>
+    const { createApp } = window.Vue
+    const { useClipboard } = window.VueUse
+
+    const { copy, isSupported } = useClipboard()
+
+    createApp({
+      data() {
+        return {
+          message: 'Hello Vue!'
+        }
+      },
+      computed: {
+        isCopyButtonVisible () {
+          return isSupported.value
+        }
+      },
+      methods: {
+        copyToClipboard(text) {
+          copy(text)
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
