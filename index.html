@@ -323,7 +323,7 @@
                   <div class="hidden flex items-baseline gap-x-1 text-white">
                     <span class="text-4xl font-bold">778,776</span>
                   </div>
-                  <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20230807/mainnet.tar.zst" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-orange-500 hover:bg-orange-400 focus-visible:outline-white">
+                  <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20230919/mainnet.tar.zst" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-orange-500 hover:bg-orange-400 focus-visible:outline-white">
                     Download mainnet
                   </a>
                 </td>
@@ -332,7 +332,7 @@
                   <div class="hidden flex items-baseline gap-x-1 text-white">
                     <span class="text-4xl font-bold">2,422,116</span>
                   </div>
-                  <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20230807/testnet.tar.zst" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-teal-500 hover:bg-teal-400 focus-visible:outline-indigo-600">
+                  <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20230919/testnet.tar.zst" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-teal-500 hover:bg-teal-400 focus-visible:outline-indigo-600">
                     Download testnet
                   </a>
                 </td>
@@ -341,7 +341,7 @@
                   <div class="hidden flex items-baseline gap-x-1 text-white">
                     <span class="text-4xl font-bold">132,123</span>
                   </div>
-                  <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20230807/signet.tar.zst" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-white">
+                  <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20230919/signet.tar.zst" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-white">
                     Download signet
                   </a>
                 </td>
@@ -553,15 +553,15 @@
                 </th>
 
                 <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ mainnet.height }}</div>
+                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(mainnet.height) }}</div>
                 </td>
 
                 <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ testnet.height }}</div>
+                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(testnet.height) }}</div>
                 </td>
 
                 <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ signet.height }}</div>
+                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(signet.height) }}</div>
                 </td>
               </tr>
 
@@ -628,15 +628,15 @@
                 </th>
 
                 <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ mainnet.txouts }}</div>
+                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(mainnet.txouts) }}</div>
                 </td>
 
                 <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ testnet.txouts }}</div>
+                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(testnet.txouts) }}</div>
                 </td>
 
                 <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ signet.txouts }}</div>
+                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(signet.txouts) }}</div>
                 </td>
               </tr>
 
@@ -647,15 +647,15 @@
                 </th>
 
                 <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ mainnet.supply }}</div>
+                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(mainnet.supply) }}</div>
                 </td>
 
                 <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ testnet.supply }}</div>
+                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(testnet.supply) }}</div>
                 </td>
 
                 <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ signet.supply }}</div>
+                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(signet.supply) }}</div>
                 </td>
               </tr>
 
@@ -675,7 +675,7 @@
 
                 <td scope="colgroup" colspan="3" class="px-6 py-4 xl:px-8">
                   <div class="text-center text-sm leading-6 text-gray-300">
-                    <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20230807/sha256sum.txt" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
+                    <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20230919/sha256sum.txt" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
                       download checksum
                     </a>
                   </div>
@@ -691,7 +691,7 @@
 
                 <td scope="colgroup" colspan="3" class="px-6 py-4 xl:px-8">
                   <div class="text-center text-sm leading-6 text-gray-300">
-                    <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20230807/sha256sum.txt.asc" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
+                    <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20230919/sha256sum.txt.asc" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
                       download signature
                     </a>
                   </div>
@@ -719,29 +719,29 @@
         return {
           mainnet: {
             "chain": "mainnet",
-            "height": "801,983",
-            "bestblock": "00000000000000000004d8c6ca93df1eef2c820ecde514d02d00281d77a5bf22",
-            "txouts": "115,271,120",
+            "height": 808499,
+            "bestblock": "00000000000000000002c4f93b67cabf3062c4307c86b3d41bc3b8c9abe88f2d",
+            "txouts": 129187308,
             "muhash": "01ffb1744bc79c8ca3cda3200ba1cb7ac62f79c19aa109a5a255daff8ee92628",
-            "supply": "1,944,968,057,532,326",
-            "size": "7.7G",
+            "supply": 1949040554524153,
+            "size": "9.1G",
           },
           testnet: {
             "chain": "testnet",
-            "height": "2,470,240",
-            "bestblock": "0000000000000026631c7960fd35a8e1375217c51cc3b67ac972ffe8e17e886d",
-            "txouts": "29,122,101",
-            "muhash": "cc168449a0e4c74522c7c8ae773424e7552bac5b9a0113167e21dc92d1ca25f3",
-            "supply": "2,099,276,952,666,167",
-            "size": "2.5G",
+            "height": 2504187,
+            "bestblock": "000000000000000f449d17a87ebcfb333fbc7c51ccf45ff771c9b021a7884894",
+            "txouts": 29342417,
+            "muhash": "ce47321f50916aff8200a872629e98f6f04fb4b58fcd309693998a92ac4ab491",
+            "supply": 2099359831055954,
+            "size": "2.4G",
           },
           signet: {
             "chain": "signet",
-            "height": "154,220",
-            "bestblock": "00000119fe7dd10ce541951b05fb4aa701a290162712cd100ace66228be76c52",
-            "txouts": "1,272,363",
-            "muhash": "ab9aba01cc88a16c9b1a63153e1e72dff7ea3fc1b3f23943794b640eb7b6698c",
-            "supply": "771,099,999,789,887",
+            "height": 161357,
+            "bestblock": "00000006bebb26120aa2d42d5e175247300c23ae9c5e54b971cf4871dceb2f0f",
+            "txouts": 1281144,
+            "muhash": "d095ad5bdd41180d608ea622b48f241c1e921c651e233d6e3340204f458649d6",
+            "supply": 806784999789387,
             "size": "1.1G",
           }
         }
@@ -763,6 +763,9 @@
           return `${hash.slice(-16)}`
             .toUpperCase()
             .match(/.{1,4}/g).join(' ')
+        },
+        formatNumber (n) {
+          return new Intl.NumberFormat().format(n)
         }
       }
     }).mount('#app')
