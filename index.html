@@ -321,19 +321,28 @@
 
                 <td class="px-6 pt-2 xl:px-8">
                   <a :href="mainnet.downloadURL" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-orange-500 hover:bg-orange-400 focus-visible:outline-white">
-                    Download mainnet
+                    pruned mainnet
+                  </a>
+                  <a :href="mainnet.assumeutxoURL" target="_blank" class="mt-4 block rounded-md py-1 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-orange-500 hover:bg-orange-400 focus-visible:outline-white">
+                    assumeutxo @ {{ formatNumber(mainnet.assumeutxoHeight) }}
                   </a>
                 </td>
 
                 <td class="px-6 pt-2 xl:px-8">
                   <a :href="testnet.downloadURL" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-teal-500 hover:bg-teal-400 focus-visible:outline-indigo-600">
-                    Download testnet
+                    pruned testnet
+                  </a>
+                  <a :href="testnet.assumeutxoURL" target="_blank" class="mt-4 block rounded-md py-1 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-teal-500 hover:bg-teal-400 focus-visible:outline-indigo-600">
+                    assumeutxo @ {{ formatNumber(testnet.assumeutxoHeight) }}
                   </a>
                 </td>
 
                 <td class="px-6 pt-2 xl:px-8">
                   <a :href="signet.downloadURL" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-white">
-                    Download signet
+                    pruned signet
+                  </a>
+                  <a :href="signet.assumeutxoURL" target="_blank" class="mt-4 block rounded-md py-1 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-white">
+                    assumeutxo @ {{ formatNumber(signet.assumeutxoHeight) }}
                   </a>
                 </td>
               </tr>
@@ -659,15 +668,15 @@
 
               <tr>
                 <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  <span class="rounded-full bg-black/50 px-2 py-1 text-xs text-white whitespace-nowrap">
-                    $ sha256sum --check --ignore-missing sha256sum.txt
+                  <span @click.prevent="() => copyToClipboard(verifyDigestCommand)" class="rounded-full bg-black/50 px-2 py-1 text-xs text-white whitespace-nowrap">
+                    $ {{ verifyDigestCommand }}
                   </span>
                 </th>
 
                 <td scope="colgroup" colspan="3" class="px-6 py-4 xl:px-8">
                   <div class="text-center text-sm leading-6 text-gray-300">
                     <a :href="digestURL" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
-                      download checksum
+                      download digest/checksum
                     </a>
                   </div>
                 </td>
@@ -675,8 +684,8 @@
 
               <tr>
                 <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  <span class="rounded-full bg-black/50 px-2 py-1 text-xs text-white">
-                    $ gpg --verify sha256sum.txt.asc
+                  <span @click.prevent="() => copyToClipboard(verifySignatureCommand)" class="rounded-full bg-black/50 px-2 py-1 text-xs text-white">
+                    $ {{ verifySignatureCommand }}
                   </span>
                 </th>
 
@@ -708,6 +717,8 @@
     createApp({
       data() {
         return {
+          verifyDigestCommand: "sha256sum --check --ignore-missing sha256sum.txt",
+          verifySignatureCommand: "gpg --verify sha256sum.txt.asc",
           digestURL: "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/sha256sum.txt",
           signatureURL: "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/sha256sum.txt.asc",
           mainnet: {
@@ -719,6 +730,8 @@
             "muhash": "a4a4af79c79ff7e6a62fb367c2c6d8f9b182b75be438cd9c228e958511cc5a02",
             "supply": 1957208678211317,
             "size": "9.1G",
+            "assumeutxoHeight": 821_568,
+            "assumeutxoURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/utxo-mainnet-821568.dat.zst"
           },
           testnet: {
             "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/testnet.tar.zst",
@@ -729,6 +742,8 @@
             "muhash": "f41b26f9e6bfe3c0ba70ab3b0b604bcedc7f8cca0c67bf38054834b2a7fc81f2",
             "supply": 2099426605797796,
             "size": "2.4G",
+            "assumeutxoHeight": 2_500_000,
+            "assumeutxoURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/utxo-testnet-2500000.dat.zst"
           },
           signet: {
             "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/signet.tar.zst",
@@ -739,6 +754,8 @@
             "muhash": "19103988a123b53694727c468a002e18301a273061aa37d8db52fea9c7d4c993",
             "supply": 870849999789387,
             "size": "1.2G",
+            "assumeutxoHeight": 160_000,
+            "assumeutxoURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/utxo-signet-160000.dat.zst"
           }
         }
       },
