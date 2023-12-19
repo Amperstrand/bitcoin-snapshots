@@ -320,28 +320,19 @@
                 <th scope="row"></th>
 
                 <td class="px-6 pt-2 xl:px-8">
-                  <div class="hidden flex items-baseline gap-x-1 text-white">
-                    <span class="text-4xl font-bold">778,776</span>
-                  </div>
-                  <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20231110/mainnet.tar.zst" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-orange-500 hover:bg-orange-400 focus-visible:outline-white">
+                  <a :href="mainnet.downloadURL" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-orange-500 hover:bg-orange-400 focus-visible:outline-white">
                     Download mainnet
                   </a>
                 </td>
 
                 <td class="px-6 pt-2 xl:px-8">
-                  <div class="hidden flex items-baseline gap-x-1 text-white">
-                    <span class="text-4xl font-bold">2,422,116</span>
-                  </div>
-                  <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20231110/testnet.tar.zst" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-teal-500 hover:bg-teal-400 focus-visible:outline-indigo-600">
+                  <a :href="testnet.downloadURL" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-teal-500 hover:bg-teal-400 focus-visible:outline-indigo-600">
                     Download testnet
                   </a>
                 </td>
 
                 <td class="px-6 pt-2 xl:px-8">
-                  <div class="hidden flex items-baseline gap-x-1 text-white">
-                    <span class="text-4xl font-bold">132,123</span>
-                  </div>
-                  <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20231110/signet.tar.zst" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-white">
+                  <a :href="signet.downloadURL" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-white">
                     Download signet
                   </a>
                 </td>
@@ -675,7 +666,7 @@
 
                 <td scope="colgroup" colspan="3" class="px-6 py-4 xl:px-8">
                   <div class="text-center text-sm leading-6 text-gray-300">
-                    <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20231110/sha256sum.txt" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
+                    <a :href="digestURL" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
                       download checksum
                     </a>
                   </div>
@@ -691,7 +682,7 @@
 
                 <td scope="colgroup" colspan="3" class="px-6 py-4 xl:px-8">
                   <div class="text-center text-sm leading-6 text-gray-300">
-                    <a href="https://pub-f53e76fad59545e8a15c9f3608d845e7.r2.dev/20231110/sha256sum.txt.asc" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
+                    <a :href="signatureURL" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
                       download signature
                     </a>
                   </div>
@@ -717,32 +708,37 @@
     createApp({
       data() {
         return {
+          digestURL: "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/sha256sum.txt",
+          signatureURL: "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/sha256sum.txt.asc",
           mainnet: {
+            "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/mainnet.tar.zst",
             "chain": "mainnet",
-            "height": 815866,
-            "bestblock": "000000000000000000045e34993cad2b0d16d6cba3e130296e6024727293cda1",
-            "txouts": 127456637,
-            "muhash": "2b62930cd924f635989fe274261f95fbb728355f34c79e79f3cbed8ecf189678",
-            "supply": 1953644928228727,
-            "size": "8.9G",
+            "height": 821_568,
+            "bestblock": "0000000000000000000060f6ece3250589e60f8e03af49887b092eb92ae4ec7d",
+            "txouts": 145787519,
+            "muhash": "a4a4af79c79ff7e6a62fb367c2c6d8f9b182b75be438cd9c228e958511cc5a02",
+            "supply": 1957208678211317,
+            "size": "9.1G",
           },
           testnet: {
+            "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/testnet.tar.zst",
             "chain": "testnet",
-            "height": 2537532,
-            "bestblock": "0000000000001974aeffe04aabd8f34684b96204b4824fe69c2a4d75bfe8012f",
-            "txouts": 29818890,
-            "muhash": "4ddb4c5b55d5dbb13e67ba078b4d26172fa0befe2026ed0a9f4a805b2b4e54d4",
-            "supply": 2099419837054752,
+            "height": 2_543_077,
+            "bestblock": "0000000000001de492366653ae061198f6fe37c0741fe7e448a01c174786050e",
+            "txouts": 29962247,
+            "muhash": "f41b26f9e6bfe3c0ba70ab3b0b604bcedc7f8cca0c67bf38054834b2a7fc81f2",
+            "supply": 2099426605797796,
             "size": "2.4G",
           },
           signet: {
+            "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/signet.tar.zst",
             "chain": "signet",
-            "height": 168716,
-            "bestblock": "000001347f3d80a9db6ead88c26a974f4b72c8aed73da792a92035fff8204ad3",
-            "txouts": 1301316,
-            "muhash": "43011ab742b11a96dd75dff05d949fd1b17492283e7f78e4846893cdc63eee94",
-            "supply": 843579999789387,
-            "size": "1.1G",
+            "height": 174_170,
+            "bestblock": "00000076c388aeb8f08c6c246750c3b9d0966ddbd01648cdcd3f12bcca4b9548",
+            "txouts": 1310469,
+            "muhash": "19103988a123b53694727c468a002e18301a273061aa37d8db52fea9c7d4c993",
+            "supply": 870849999789387,
+            "size": "1.2G",
           }
         }
       },
