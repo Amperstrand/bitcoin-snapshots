@@ -348,57 +348,6 @@
               </tr>
 
               <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  &nbsp;
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">
-                    <a :href="getMempoolLink(mainnet)" target="_blank">
-                      <div class="flex items-center justify-center">
-                        <div class="pr-1 underline decoration-dotted">view on mempool</div>
-                        <div>
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                          </svg>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">
-                    <a :href="getMempoolLink(testnet)" target="_blank">
-                      <div class="flex items-center justify-center">
-                        <div class="pr-1 underline decoration-dotted">view on mempool</div>
-                        <div>
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                          </svg>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">
-                    <a :href="getMempoolLink(signet)" target="_blank">
-                      <div class="flex items-center justify-center">
-                        <div class="pr-1 underline decoration-dotted">view on mempool</div>
-                        <div>
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                          </svg>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
                 <th scope="colgroup" colspan="4" class="pb-4 text-sm font-semibold leading-6 text-white pt-8">
                   bitcoin.conf
                   <div class="absolute inset-x-8 mt-4 h-px bg-white/10"></div>
@@ -553,15 +502,42 @@
                 </th>
 
                 <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(mainnet.height) }}</div>
+                  <a :href="getMempoolLink(mainnet)" target="_blank" class="text-center text-sm leading-6 text-gray-300">
+                    <div class="flex items-center justify-center">
+                      <div class="pr-1 underline decoration-dotted">{{ formatNumber(mainnet.height) }}</div>
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
                 </td>
 
                 <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(testnet.height) }}</div>
+                  <a :href="getMempoolLink(testnet)" target="_blank" class="text-center text-sm leading-6 text-gray-300">
+                    <div class="flex items-center justify-center">
+                      <div class="pr-1 underline decoration-dotted">{{ formatNumber(testnet.height) }}</div>
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
                 </td>
 
                 <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(signet.height) }}</div>
+                  <a :href="getMempoolLink(signet)" target="_blank" class="text-center text-sm leading-6 text-gray-300">
+                    <div class="flex items-center justify-center">
+                      <div class="pr-1 underline decoration-dotted">{{ formatNumber(signet.height) }}</div>
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
                 </td>
               </tr>
 
@@ -617,6 +593,34 @@
                   <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
                     <span class="whitespace-nowrap">{{ getLongFormat(signet.muhash) }}</span>
                     <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(signet.muhash)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
+                  hash_serialized_3
+                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
+                </th>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
+                    <span class="whitespace-nowrap">{{ getLongFormat(mainnet.hash_serialized_3) }}</span>
+                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(mainnet.hash_serialized_3)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
+                  </div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
+                    <span class="whitespace-nowrap">{{ getLongFormat(testnet.hash_serialized_3) }}</span>
+                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(testnet.hash_serialized_3)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
+                  </div>
+                </td>
+
+                <td class="px-6 py-4 xl:px-8">
+                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
+                    <span class="whitespace-nowrap">{{ getLongFormat(signet.hash_serialized_3) }}</span>
+                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(signet.hash_serialized_3)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
                   </div>
                 </td>
               </tr>
@@ -719,40 +723,43 @@
         return {
           verifyDigestCommand: "sha256sum --check --ignore-missing sha256sum.txt",
           verifySignatureCommand: "gpg --verify sha256sum.txt.asc",
-          digestURL: "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/sha256sum.txt",
-          signatureURL: "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/sha256sum.txt.asc",
+          digestURL: "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/202401/sha256sum.txt",
+          signatureURL: "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/202401/sha256sum.txt.asc",
           mainnet: {
-            "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/mainnet.tar.zst",
+            "downloadURL": "https://pub-43e61394a74745b788a43f2eae15b061.r2.dev/202401/mainnet.tar.zst",
             "chain": "mainnet",
-            "height": 821_568,
-            "bestblock": "0000000000000000000060f6ece3250589e60f8e03af49887b092eb92ae4ec7d",
-            "txouts": 145787519,
-            "muhash": "a4a4af79c79ff7e6a62fb367c2c6d8f9b182b75be438cd9c228e958511cc5a02",
-            "supply": 1957208678211317,
-            "size": "9.1G",
+            "height": 823_815,
+            "bestblock": "00000000000000000002e03f67f24064f00f4a8f5883f2d75f9d8be5ff047672",
+            "txouts": 153344265,
+            "muhash": "f95af76393fbe2cb07addcd944121863a3a89e4716cca372e02926cd75ce2921",
+            "hash_serialized_3": "6d8f588fd7701fb0d12a5d25048054b3a4d69c0dc66d5a38f01403e551ab5d3a",
+            "supply": 1958613049589615,
+            "size": "11G",
             "assumeutxoHeight": 821_568,
             "assumeutxoURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/utxo-mainnet-821568.dat.zst"
           },
           testnet: {
-            "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/testnet.tar.zst",
+            "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/202401/testnet.tar.zst",
             "chain": "testnet",
-            "height": 2_543_077,
-            "bestblock": "0000000000001de492366653ae061198f6fe37c0741fe7e448a01c174786050e",
-            "txouts": 29962247,
-            "muhash": "f41b26f9e6bfe3c0ba70ab3b0b604bcedc7f8cca0c67bf38054834b2a7fc81f2",
-            "supply": 2099426605797796,
-            "size": "2.4G",
+            "height": 2_569_743,
+            "bestblock": "00000000000000aae263b6113ee8baf455ee5e8893395212fce4df3c230489dc",
+            "txouts": 30130583,
+            "muhash": "4e336e5221ea56acea7852dfea7d9c5a26361a0047cb535722c29163da6aa969",
+            "hash_serialized_3": "247cf8fc0bf41255bd4283fddd39f54fb0f59f1a4937da674c7eb6cddfdc0348",
+            "supply": 2099459157047647,
+            "size": "2.5G",
             "assumeutxoHeight": 2_500_000,
             "assumeutxoURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/utxo-testnet-2500000.dat.zst"
           },
           signet: {
-            "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/signet.tar.zst",
+            "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/202401/signet.tar.zst",
             "chain": "signet",
-            "height": 174_170,
-            "bestblock": "00000076c388aeb8f08c6c246750c3b9d0966ddbd01648cdcd3f12bcca4b9548",
-            "txouts": 1310469,
-            "muhash": "19103988a123b53694727c468a002e18301a273061aa37d8db52fea9c7d4c993",
-            "supply": 870849999789387,
+            "height": 176_586,
+            "bestblock": "0000000c2848e81d33416735b41645e53898c91ebebae30c17a6ea8e8dd81123",
+            "txouts": 1433922,
+            "muhash": "78f7b5bc7913a3a8aece1e39df2d31d29c90f4ba442332d469c1501e63327d1c",
+            "hash_serialized_3": "04a0592174c9cb5a8c405dddb2ef622367b47c9588460494d50c783679ee95d8",
+            "supply": 882929999789387,
             "size": "1.2G",
             "assumeutxoHeight": 160_000,
             "assumeutxoURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/utxo-signet-160000.dat.zst"
