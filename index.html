@@ -1,795 +1,443 @@
-<!DOCTYPE html>
-<html class="h-full">
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-  <title>Bitcoin Core Snapshots</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script src="https://unpkg.com/@vueuse/shared"></script>
-  <script src="https://unpkg.com/@vueuse/core"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>Bitcoin Snapshots</title>
+  <style type="text/css">
+    body {
+      font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      background-color: #181A20;
+      margin: 0;
+      padding: 0;
+      color: #E0E0E0;
+    }
+
+    .header {
+      background-color: #1F2128;
+      text-align: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #333842;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #F8F8F2;
+      margin: 10px 0;
+    }
+
+    .tagline {
+      font-size: 10px;
+      color: #888EA8;
+      font-style: italic;
+      margin: 5px 0;
+    }
+
+    .navigation {
+      background-color: #232530;
+      border-bottom: 1px solid #333842;
+      padding: 5px 10px;
+      font-size: 10px;
+    }
+
+    .navigation a {
+      color: #8AB4F8;
+      text-decoration: none;
+      margin-right: 15px;
+    }
+
+    .navigation a:hover {
+      text-decoration: underline;
+    }
+
+    .search-section {
+      background-color: #181A20;
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #333842;
+    }
+
+    .search-table {
+      margin: 0 auto;
+    }
+
+    .search-table td {
+      padding: 3px 5px;
+      font-size: 11px;
+    }
+
+    .search-input {
+      width: 200px;
+      padding: 2px;
+      border: 1px solid #333842;
+      background-color: #232530;
+      color: #E0E0E0;
+      font-size: 11px;
+    }
+
+    .search-button {
+      padding: 2px 10px;
+      border: 1px solid #333842;
+      background-color: #232530;
+      color: #E0E0E0;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .search-button:hover {
+      background-color: #2D303A;
+    }
+
+    .category-select {
+      padding: 2px;
+      border: 1px solid #333842;
+      background-color: #232530;
+      color: #E0E0E0;
+      font-size: 11px;
+    }
+
+    .main-content {
+      padding: 15px;
+    }
+
+    .browse-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #F8F8F2;
+    }
+
+    .stats {
+      font-size: 10px;
+      color: #888EA8;
+      margin-bottom: 15px;
+    }
+
+    .torrent-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      border: 1px solid #333842;
+    }
+
+    .torrent-table th {
+      background-color: #232530;
+      border: 1px solid #333842;
+      padding: 3px 5px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: bold;
+      color: #F8F8F2;
+    }
+
+    .torrent-table td {
+      border: 1px solid #333842;
+      padding: 3px 5px;
+      vertical-align: middle;
+      background-color: #1F2128;
+      color: #E0E0E0;
+    }
+
+    .torrent-table tr:nth-child(even) td {
+      background-color: #232530;
+    }
+
+    .torrent-table tr:hover td {
+      background-color: #2D303A;
+    }
+
+    table a {
+      color: #8AB4F8;
+      text-decoration: none;
+      font-weight: normal;
+    }
+
+    table a:hover {
+      text-decoration: underline;
+    }
+
+    .torrent-desc {
+      font-size: 9px;
+      color: #888EA8;
+      margin-top: 2px;
+    }
+
+    .uploader {
+      font-size: 9px;
+      color: #888EA8;
+    }
+
+    .seeds {
+      color: #4DD784;
+      text-align: center;
+    }
+
+    .leeches {
+      color: #FF5370;
+      text-align: center;
+    }
+
+    .file-size {
+      text-align: right;
+      font-size: 9px;
+    }
+
+    .upload-date {
+      font-size: 9px;
+      color: #888EA8;
+      text-align: center;
+    }
+
+    .download-links {
+      text-align: center;
+    }
+
+    a {
+      color: #8AB4F8;
+      text-decoration: none;
+      font-size: 9px;
+      margin: 0 2px;
+    }
+
+    .download-links a:hover {
+      text-decoration: underline;
+    }
+
+    .category-cell {
+      text-align: center;
+      font-size: 9px;
+    }
+
+    .pagination {
+      text-align: center;
+      margin: 15px 0;
+      font-size: 10px;
+    }
+
+    .pagination a {
+      color: #8AB4F8;
+      text-decoration: none;
+      margin: 0 2px;
+    }
+
+    .pagination a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      background-color: #232530;
+      border-top: 1px solid #333842;
+      padding: 10px;
+      text-align: center;
+      font-size: 9px;
+      color: #888EA8;
+      margin-top: 20px;
+    }
+
+    .footer a {
+      color: #8AB4F8;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .vip {
+      color: #4DD784;
+      font-weight: bold;
+    }
+
+    .trusted {
+      color: #FFB86C;
+      font-weight: bold;
+    }
+
+    .skull {
+      font-weight: bold;
+      margin-right: 2px;
+    }
+
+    .skull-vip {
+      color: #4DD784;
+    }
+
+    .skull-trusted {
+      color: #FFB86C;
+    }
+
+    a img {
+      border: 0;
+    }
+
+    .wrap {
+      max-width: 900px;
+      padding-left: 15px;
+      padding-right: 15px;
+      display: block;
+      margin: 0 auto 20px auto;
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    p {
+      font-size: 12px;
+    }
+
+    .copyleft {
+      display: inline-block;
+      transform: rotate(180deg);
+    }
+  </style>
 </head>
 
-<body class="h-full bg-gray-900">
-  <div id="app" class="bg-gray-900 py-24 sm:py-32">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto max-w-4xl text-center">
-        <h1 class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-          Bitcoin Core Snapshots
-        </h1>
-      </div>
-      <p class="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-gray-300">
-        <span class="inline-block">Get a copy of the Bitcoin blockchain at a specific point in time.</span>
-        <span class="inline-block">Used for restoring the blockchain to a particular state or for syncing new nodes faster.</span>
-      </p>
-
-      <!-- xs to lg -->
-      <div class="mx-auto mt-12 max-w-md space-y-8 sm:hidden">
-        <div class="rounded-md bg-red-50 p-4">
-          <div class="flex">
-            <div class="flex-shrink-0">
-              <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <div class="ml-3">
-              <h3 class="text-sm font-medium text-red-800">Open this website on a larger browser.</h3>
-            </div>
-          </div>
-        </div>
-
-
-        <section class="hidden p-8">
-          <h3 id="tier-basic" class="text-sm font-semibold leading-6 text-white">Basic</h3>
-          <p class="mt-2 flex items-baseline gap-x-1">
-            <span class="text-4xl font-bold text-white">$9</span>
-            <span class="text-sm font-semibold text-gray-300">/month</span>
-          </p>
-          <a href="#" aria-describedby="tier-basic" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white">Buy plan</a>
-          <ul role="list" class="mt-10 space-y-4 text-sm leading-6 text-white">
-            <li>
-              <ul role="list" class="space-y-4">
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Integrations </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Shared links </span>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <ul role="list" class="space-y-4">
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Advanced analytics </span>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <ul role="list" class="space-y-4">
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> 24/7 online support </span>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-
-        <section class="hidden p-8 rounded-xl bg-white/5 ring-1 ring-inset ring-white/10">
-          <h3 id="tier-essential" class="text-sm font-semibold leading-6 text-white">Essential</h3>
-          <p class="mt-2 flex items-baseline gap-x-1">
-            <span class="text-4xl font-bold text-white">$29</span>
-            <span class="text-sm font-semibold text-gray-300">/month</span>
-          </p>
-          <a href="#" aria-describedby="tier-essential" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-indigo-500 text-white hover:bg-indigo-400 focus-visible:outline-indigo-500">Buy plan</a>
-          <ul role="list" class="mt-10 space-y-4 text-sm leading-6 text-white">
-            <li>
-              <ul role="list" class="space-y-4">
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Integrations </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Shared links </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Importing and exporting </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span>
-                    Team members
-                    <span class="text-sm leading-6 text-gray-400">(Up to 20 users)</span>
-                  </span>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <ul role="list" class="space-y-4">
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Advanced analytics </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Basic reports </span>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <ul role="list" class="space-y-4">
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> 24/7 online support </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Quarterly product workshops </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Priority phone support </span>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-
-        <section class="hidden p-8">
-          <h3 id="tier-premium" class="text-sm font-semibold leading-6 text-white">Premium</h3>
-          <p class="mt-2 flex items-baseline gap-x-1">
-            <span class="text-4xl font-bold text-white">$59</span>
-            <span class="text-sm font-semibold text-gray-300">/month</span>
-          </p>
-          <a href="#" aria-describedby="tier-premium" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white">Buy plan</a>
-          <ul role="list" class="mt-10 space-y-4 text-sm leading-6 text-white">
-            <li>
-              <ul role="list" class="space-y-4">
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Integrations </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Shared links </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Importing and exporting </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span>
-                    Team members
-                    <span class="text-sm leading-6 text-gray-400">(Up to 50 users)</span>
-                  </span>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <ul role="list" class="space-y-4">
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Advanced analytics </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Basic reports </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Professional reports </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Custom report builder </span>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <ul role="list" class="space-y-4">
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> 24/7 online support </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Quarterly product workshops </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> Priority phone support </span>
-                </li>
-
-                <li class="flex gap-x-3">
-                  <svg class="h-6 w-5 flex-none text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                  <span> 1:1 onboarding tour </span>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-      </div>
-
-      <!-- lg+ -->
-      <div class="isolate mt-20 hidden sm:block">
-        <div class="relative -mx-8">
-          <table class="w-full table-fixed border-separate border-spacing-x-8 text-left">
-            <colgroup>
-              <col class="w-1/4">
-              <col class="w-1/4">
-              <col class="w-1/4">
-              <col class="w-1/4">
-            </colgroup>
-            <thead class="hidden">
-              <tr>
-                <td></td>
-
-                <th scope="col" class="px-6 pt-6 xl:px-8 xl:pt-8">
-                  <div class="text-sm font-semibold leading-7 text-white">height</div>
-                </th>
-
-                <th scope="col" class="px-6 pt-6 xl:px-8 xl:pt-8">
-                  <div class="text-sm font-semibold leading-7 text-white">height</div>
-                </th>
-
-                <th scope="col" class="px-6 pt-6 xl:px-8 xl:pt-8">
-                  <div class="text-sm font-semibold leading-7 text-white">height</div>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row"></th>
-
-                <td class="px-6 pt-2 xl:px-8">
-                  <a :href="mainnet.downloadURL" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-orange-500 hover:bg-orange-400 focus-visible:outline-white">
-                    pruned mainnet
-                  </a>
-                  <a :href="mainnet.assumeutxoURL" target="_blank" class="mt-4 block rounded-md py-1 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-orange-500 hover:bg-orange-400 focus-visible:outline-white">
-                    assumeutxo @ {{ formatNumber(mainnet.assumeutxoHeight) }}
-                  </a>
-                </td>
-
-                <td class="px-6 pt-2 xl:px-8">
-                  <a :href="testnet.downloadURL" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-teal-500 hover:bg-teal-400 focus-visible:outline-indigo-600">
-                    pruned testnet
-                  </a>
-                  <a :href="testnet.assumeutxoURL" target="_blank" class="mt-4 block rounded-md py-1 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-teal-500 hover:bg-teal-400 focus-visible:outline-indigo-600">
-                    assumeutxo @ {{ formatNumber(testnet.assumeutxoHeight) }}
-                  </a>
-                </td>
-
-                <td class="px-6 pt-2 xl:px-8">
-                  <a :href="signet.downloadURL" target="_blank" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-white">
-                    pruned signet
-                  </a>
-                  <a :href="signet.assumeutxoURL" target="_blank" class="mt-4 block rounded-md py-1 px-3 text-center text-sm font-semibold leading-6 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-white">
-                    assumeutxo @ {{ formatNumber(signet.assumeutxoHeight) }}
-                  </a>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="colgroup" colspan="4" class="pb-4 text-sm font-semibold leading-6 text-white pt-8">
-                  bitcoin.conf
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/10"></div>
-                </th>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  chain
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">mainnet</div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">testnet</div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">signet</div>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  prune
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">550</div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">550</div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
-                  </svg>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  txindex
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
-                  </svg>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
-                  </svg>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <svg class="mx-auto h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  coinstatsindex
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
-                  </svg>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
-                  </svg>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <svg class="mx-auto h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  blockfilterindex
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
-                  </svg>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <svg class="mx-auto h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
-                  </svg>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <svg class="mx-auto h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="colgroup" colspan="4" class="pb-4 text-sm font-semibold leading-6 text-white pt-16">
-                  Info
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/10"></div>
-                </th>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  size
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ mainnet.size }}</div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ testnet.size }}</div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ signet.size }}</div>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  height
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <a :href="getMempoolLink(mainnet)" target="_blank" class="text-center text-sm leading-6 text-gray-300">
-                    <div class="flex items-center justify-center">
-                      <div class="pr-1 underline decoration-dotted">{{ formatNumber(mainnet.height) }}</div>
-                      <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
-                      </div>
-                    </div>
-                  </a>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <a :href="getMempoolLink(testnet)" target="_blank" class="text-center text-sm leading-6 text-gray-300">
-                    <div class="flex items-center justify-center">
-                      <div class="pr-1 underline decoration-dotted">{{ formatNumber(testnet.height) }}</div>
-                      <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
-                      </div>
-                    </div>
-                  </a>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <a :href="getMempoolLink(signet)" target="_blank" class="text-center text-sm leading-6 text-gray-300">
-                    <div class="flex items-center justify-center">
-                      <div class="pr-1 underline decoration-dotted">{{ formatNumber(signet.height) }}</div>
-                      <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
-                      </div>
-                    </div>
-                  </a>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  best block
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
-                    <span class="whitespace-nowrap">{{ getLongFormat(mainnet.bestblock) }}</span>
-                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(mainnet.bestblock)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
-                  </div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
-                    <span class="whitespace-nowrap">{{ getLongFormat(testnet.bestblock) }}</span>
-                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(testnet.bestblock)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
-                  </div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
-                    <span class="whitespace-nowrap">{{ getLongFormat(signet.bestblock) }}</span>
-                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(signet.bestblock)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  muhash
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
-                    <span class="whitespace-nowrap">{{ getLongFormat(mainnet.muhash) }}</span>
-                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(mainnet.muhash)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
-                  </div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
-                    <span class="whitespace-nowrap">{{ getLongFormat(testnet.muhash) }}</span>
-                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(testnet.muhash)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
-                  </div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
-                    <span class="whitespace-nowrap">{{ getLongFormat(signet.muhash) }}</span>
-                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(signet.muhash)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  hash_serialized_3
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
-                    <span class="whitespace-nowrap">{{ getLongFormat(mainnet.hash_serialized_3) }}</span>
-                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(mainnet.hash_serialized_3)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
-                  </div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
-                    <span class="whitespace-nowrap">{{ getLongFormat(testnet.hash_serialized_3) }}</span>
-                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(testnet.hash_serialized_3)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
-                  </div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300 flex items-center justify-center">
-                    <span class="whitespace-nowrap">{{ getLongFormat(signet.hash_serialized_3) }}</span>
-                    <button v-if="isCopyButtonVisible" @click.prevent="() => copyToClipboard(signet.hash_serialized_3)" class="group relative ml-2 hidden h-9 w-9 items-center justify-center sm:flex"><svg class="h-8 w-8 stroke-slate-400 transition group-hover:rotate-[-4deg] group-hover:stroke-slate-600" fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.9975 10.7499L11.7475 10.7499C10.6429 10.7499 9.74747 11.6453 9.74747 12.7499L9.74747 21.2499C9.74747 22.3544 10.6429 23.2499 11.7475 23.2499L20.2475 23.2499C21.352 23.2499 22.2475 22.3544 22.2475 21.2499L22.2475 12.7499C22.2475 11.6453 21.352 10.7499 20.2475 10.7499L18.9975 10.7499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9975 12.2499L13.9975 12.2499C13.4452 12.2499 12.9975 11.8022 12.9975 11.2499L12.9975 9.74988C12.9975 9.19759 13.4452 8.74988 13.9975 8.74988L17.9975 8.74988C18.5498 8.74988 18.9975 9.19759 18.9975 9.74988L18.9975 11.2499C18.9975 11.8022 18.5498 12.2499 17.9975 12.2499Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 16.2499L18.2475 16.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.7475 19.2499L18.2475 19.2499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><g class="opacity-0"><path d="M15.9975 5.99988L15.9975 3.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19.9975 5.99988L20.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9975 5.99988L10.9975 4.99988" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg></button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  txouts
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(mainnet.txouts) }}</div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(testnet.txouts) }}</div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(signet.txouts) }}</div>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  supply (sats)
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/5"></div>
-                </th>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(mainnet.supply) }}</div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(testnet.supply) }}</div>
-                </td>
-
-                <td class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">{{ formatNumber(signet.supply) }}</div>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="colgroup" colspan="4" class="pb-4 text-sm font-semibold leading-6 text-white pt-16">
-                  Don't trust, verify!
-                  <div class="absolute inset-x-8 mt-4 h-px bg-white/10"></div>
-                </th>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  <span @click.prevent="() => copyToClipboard(verifyDigestCommand)" class="rounded-full bg-black/50 px-2 py-1 text-xs text-white whitespace-nowrap">
-                    $ {{ verifyDigestCommand }}
-                  </span>
-                </th>
-
-                <td scope="colgroup" colspan="3" class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">
-                    <a :href="digestURL" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
-                      download digest/checksum
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row" class="py-4 text-sm font-normal leading-6 text-white">
-                  <span @click.prevent="() => copyToClipboard(verifySignatureCommand)" class="rounded-full bg-black/50 px-2 py-1 text-xs text-white">
-                    $ {{ verifySignatureCommand }}
-                  </span>
-                </th>
-
-                <td scope="colgroup" colspan="3" class="px-6 py-4 xl:px-8">
-                  <div class="text-center text-sm leading-6 text-gray-300">
-                    <a :href="signatureURL" target="_blank" class="text-white bg-white/10 rounded-md p-2 block">
-                      download signature
-                    </a>
-                  </div>
-                </td>
-              </tr>
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="mt-20 text-center text-white">
-      This project is maintained by <a href="https://jaonoct.us" target="_blank" class="font-bold underline">jaonoctus</a>.
+<body>
+
+  <div class="header">
+    <div class="logo">BITCOIN SNAPSHOTS</div>
+    <div class="tagline">
+      <img src="censorship.jpg"/>
     </div>
   </div>
 
-  <script>
-    const { createApp } = window.Vue
-    const { useClipboard } = window.VueUse
+  <div class="wrap">
+    <div class="main-content">
+      <h2>Browse torrents</h2>
 
-    const { copy, isSupported } = useClipboard()
+      <table class="torrent-table" cellpadding="0" cellspacing="0">
+        <tr>
+          <th width="20">Type</th>
+          <th width="20">Network</th>
+          <th width="*">Name</th>
+          <th width="20">Height</th>
+          <th width="60">Best block</th>
+          <th width="60">MuHash</th>
+          <th width="40">TxOuts</th>
+          <th width="40">Supply (BTC)</th>
+          <th width="80">UTXO Set size</th>
+          <th width="60">Download</th>
+        </tr>
+        <tbody>
+          <tr>
+            <td>Assume UTXO</td>
+            <td>mainnet</td>
+            <td class="torrent-name">
+              <b>utxo-bitcoin-mainnet-840000</b>
+              <div class="torrent-description"></div>
+            </td>
+            <td>
+              <a href="https://mempool.space/block/0000000000000000000320283a032748cef8227873ff4872689bf23f1cda83a5"
+                target="_blank">
+                840,000
+              </a>
+            </td>
+            <td>9753 508A 1A3D 4303</td>
+            <td>ACB3 7639 EB04 D411</td>
+            <td>172.8M</td>
+            <td>19.85M</td>
+            <td>9.10 GB</td>
+            <td>
+              <a href="magnet:?xt=urn:btih:edd894142155a5e8e691e5fee72dc441a46e64ef&dn=utxo-bitcoin-mainnet-840000&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce"
+                target="_blank">
+                <img
+                  src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
+                  width="16" height="16" />
+              </a>
+            </td>
+          </tr>
 
-    createApp({
-      data() {
-        return {
-          verifyDigestCommand: "sha256sum --check --ignore-missing sha256sum.txt",
-          verifySignatureCommand: "gpg --verify sha256sum.txt.asc",
-          digestURL: "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/202404/sha256sum.txt",
-          signatureURL: "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/202404/sha256sum.txt.asc",
-          mainnet: {
-            "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/202404/mainnet.tar.zst",
-            "chain": "mainnet",
-            "height": 841_254,
-            "bestblock": "000000000000000000016115ede7fd2b601cd98a46144e6720f2094f1eaa5f50",
-            "txouts": 180748073,
-            "muhash": "f2a35f0b6f7482ea0f12cedac3500b94ac905bbeda6f9946c980f649e11d3c06",
-            "hash_serialized_3": "43384d26829f3d9c918f44d95f74493cc2f7a7f1d6dea503422a2187689f8185",
-            "supply": 1969120236769845,
-            "size": "12G",
-            "assumeutxoHeight": 821_568,
-            "assumeutxoURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/utxo-mainnet-821568.dat.zst"
-          },
-          testnet: {
-            "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/202404/testnet.tar.zst",
-            "chain": "testnet",
-            "height": 2_745_129,
-            "bestblock": "00000000000003acf6e5b8e560ff5c5a97748f9a4279418159f8a80af9bdea6d",
-            "txouts": 103066356,
-            "muhash": "9c851ecbd923eb8646bb6b1ab8e13a838b7203f9452c9a10f8f14157c031edde",
-            "hash_serialized_3": "3c10cd089099bb1ee0500a39f3fca097a595612957399d85765205657bc6d834",
-            "supply": 2099663916474610,
-            "size": "7.6G",
-            "assumeutxoHeight": 2_500_000,
-            "assumeutxoURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/utxo-testnet-2500000.dat.zst"
-          },
-          signet: {
-            "downloadURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/202404/signet.tar.zst",
-            "chain": "signet",
-            "height": 193_234,
-            "bestblock": "0000003d377db70d849c65f04f4d4abf1c8e97fbc41a8d710fe00b97ef99c176",
-            "txouts": 2_530_592,
-            "muhash": "7ec381cbeeb2637f60a4429774495dea7f43934b38c81bab6a85bd30cbfd3e9c",
-            "hash_serialized_3": "35cd1758cc6623536d4b51a4989b74274c3c3b4d5212dee54a952d0896547ee9",
-            "supply": 966145319914827,
-            "size": "1.8G",
-            "assumeutxoHeight": 160_000,
-            "assumeutxoURL": "https://eu2.contabostorage.com/3fc7909e0b8744a6a4fb58dc5158ffb6:bitcoin/20231218/utxo-signet-160000.dat.zst"
-          }
-        }
-      },
-      computed: {
-        isCopyButtonVisible () {
-          return isSupported.value
-        }
-      },
-      methods: {
-        copyToClipboard(text) {
-          copy(text)
-        },
-        getMempoolLink({ bestblock, chain }) {
-          const prefix = chain !== 'mainnet' ? `${chain}/` : ''
-          return `https://mempool.space/${prefix}block/${bestblock}`
-        },
-        getLongFormat(hash) {
-          return `${hash.slice(-16)}`
-            .toUpperCase()
-            .match(/.{1,4}/g).join(' ')
-        },
-        formatNumber (n) {
-          return new Intl.NumberFormat().format(n)
-        }
-      }
-    }).mount('#app')
-  </script>
+          <tr>
+            <td>Snapshot</td>
+            <td>mainnet</td>
+            <td class="torrent-name">
+              <b>utxo-snapshot-bitcoin-mainnet-902949</b>
+              <div class="torrent-description">pruned</div>
+            </td>
+            <td>
+              <a href="https://mempool.space/block/00000000000000000000d32fef66e7c318577bed06d123393c482d14ea85180e"
+                target="_blank">
+                902,949
+              </a>
+            </td>
+            <td>3C48 2D14 EA85 180E</td>
+            <td>557D 8411 5A31 5D12</td>
+            <td>168M</td>
+            <td>19.88M</td>
+            <td>11 GB</td>
+            <td>
+              <a href="magnet:?xt=urn:btih:1e154bff90c0e329475354ace07a3c3afd656ebd&dn=utxo-snapshot-bitcoin-mainnet-902949&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fwepzone.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fttk2.nbaonlineservice.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tryhackx.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrust-demo.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.srv00.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gmi.gd%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gigantino.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.darkness.services%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce"
+                target="_blank">
+                <img
+                  src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
+                  width="16" height="16" />
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div style="text-align: justify;">
+      <h2>Torrenting Explained</h2>
+      <p>The normal process of downloading files from the internet involves clicking on the Download button and
+        allowing the entire file to be downloaded onto your device. However, torrenting is a bit different as it
+        involves breaking the file into several pieces known as packets. Furthermore, the downloaded torrent file
+        keeps track of the people with different packets and keeps interchanging the location you are downloading
+        from.
+      </p>
+      <p>
+        <b>Why should you seed?</b> Seeding means sharing the parts of the file you have downloaded with others. By seeding, you help keep the torrent alive and make downloads faster for everyone. If no one seeds, files become unavailable for others to download.
+      </p>
+
+      <h2>Don't Trust, Verify!</h2>
+      <p><b>File Types:</b></p>
+      <p>
+        <ul>
+          <li><b>*.tar.zst</b> The compressed snapshot data using Zstandard compression.</li>
+          <li><b>*.sha512sum.txt</b> Contains SHA-512 checksums for verification.</li>
+          <li><b>*.asc</b> GPG signature file for authenticity verification.</li>
+        </ul>
+      </p>
+      <p><b>Verify authenticity:</b></p>
+      <p>
+        <pre><code>$ gpg --verify ./*.asc</code></pre>
+        <pre><code>gpg: assuming signed data in '&lt;filename&gt;.sha512sum.txt'
+gpg: Signature made &lt;timestamp&gt;
+gpg:                using EDDSA key EBBB81751DB809DE50DD58C4AC75C86B6EE74334
+gpg: Good signature from "jaonoctus &lt;jaonoctus@protonmail.com&gt;" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 7B69 6A61 6F73 1337 520B  8A19 D8F3 1505 B581 D617
+     Subkey fingerprint: EBBB 8175 1DB8 09DE 50DD  58C4 AC75 C86B 6EE7 4334</code></pre>
+      </p>
+      <p><b>Verify integrity:</b></p>
+      <p>
+        <pre><code>$ sha512sum --check --ignore-missing ./*.sha512sum.txt</code></pre>
+        <pre><code>&lt;filename&gt;: OK</code></pre>
+      </p>
+
+      <h2>Donate</h2>
+      <p>
+        If you find this site useful, please consider donating to support the project. Donations help cover server
+        costs.
+      </p>
+      <p style="text-align: center;">
+        <span>Lightning:</span> <a href="https://zbd.gg/jaonoctus" rel="nofollow" target="_blank">jaonoctus@zbd.gg</a>
+      </p>
+    </div>
+
+
+  </div>
+<div class="footer">
+      <span class="copyleft">&copy;</span> Bitcoin Snapshots by <b>jaonoctus</b></i>
+    </div>
 </body>
 
 </html>
