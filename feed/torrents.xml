@@ -15,7 +15,7 @@
 <item>
 <title>utxo-bitcoin-mainnet-840000</title>
 <description>Assume UTXO snapshot for Bitcoin mainnet at height 840000. Contains 176.94M transaction outputs with 19.68M BTC supply. UTXO set size: 12 GB. Best block: 689B F23F 1CDA 83A5, MuHash: 0467 BC5E 4265 A637.</description>
-<link>magnet:?xt=urn:btih:8e95c088ef617b46b70d9756e251b5f44e90a915&dn=utxo-bitcoin-mainnet-840000&xl=9772099297&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce</link>
+<link>magnet:?xt=urn:btih:8e95c088ef617b46b70d9756e251b5f44e90a915&amp;dn=utxo-bitcoin-mainnet-840000&amp;xl=9772099297&amp;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce</link>
 <guid isPermaLink="false">8e95c088ef617b46b70d9756e251b5f44e90a915</guid>
 <pubDate>Tue, 01 Jul 2025 12:00:00 +0000</pubDate>
 </item>
@@ -23,7 +23,7 @@
 <item>
 <title>utxo-snapshot-bitcoin-mainnet-902949</title>
 <description>Pruned UTXO snapshot for Bitcoin mainnet at height 902949. Contains 168M transaction outputs with 19.88M BTC supply. UTXO set size: 11 GB. Best block: 3C48 2D14 EA85 180E, MuHash: 557D 8411 5A31 5D12.</description>
-<link>magnet:?xt=urn:btih:5d599ff4c82d7f60f76aba8f4896d573caa98c25&dn=utxo-snapshot-bitcoin-mainnet-902949&xl=9304410956&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce</link>
+<link>magnet:?xt=urn:btih:5d599ff4c82d7f60f76aba8f4896d573caa98c25&amp;dn=utxo-snapshot-bitcoin-mainnet-902949&amp;xl=9304410956&amp;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce</link>
 <guid isPermaLink="false">5d599ff4c82d7f60f76aba8f4896d573caa98c25</guid>
 <pubDate>Tue, 01 Jul 2025 12:00:00 +0000</pubDate>
 </item>
@@ -31,7 +31,7 @@
 <item>
 <title>utxo-snapshot-bitcoin-testnet4-88776</title>
 <description>Full node UTXO snapshot for Bitcoin testnet4 at height 88776. Includes txindex, coinstatsindex, and blockfilterindex. Contains 12.92M transaction outputs with 4.43M BTC supply. UTXO set size: 908 MB. Best block: 867B F034 F2C7 8713, MuHash: BA85 FFC4 F85C 6BFD.</description>
-<link>magnet:?xt=urn:btih:5c5c49c384df7647d14095e9a281317bc648ad4f&dn=utxo-snapshot-bitcoin-testnet4-88776&xl=5279655178&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce</link>
+<link>magnet:?xt=urn:btih:5c5c49c384df7647d14095e9a281317bc648ad4f&amp;dn=utxo-snapshot-bitcoin-testnet4-88776&amp;xl=5279655178&amp;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce</link>
 <guid isPermaLink="false">5c5c49c384df7647d14095e9a281317bc648ad4f</guid>
 <pubDate>Tue, 01 Jul 2025 12:00:00 +0000</pubDate>
 </item>
@@ -39,7 +39,7 @@
 <item>
 <title>utxo-snapshot-bitcoin-signet-258521</title>
 <description>Full node UTXO snapshot for Bitcoin signet at height 258521. Includes txindex, coinstatsindex, and blockfilterindex. Contains 33.65M transaction outputs with 11.71M BTC supply. UTXO set size: 2 GB. Best block: B9F6 28F8 09AD A1D6, MuHash: ADCD 6186 4CEB EDBA.</description>
-<link>magnet:?xt=urn:btih:d1910a0bed8ec60f52e7e44030e44c6a27940b73&dn=utxo-snapshot-bitcoin-signet-258521&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce</link>
+<link>magnet:?xt=urn:btih:d1910a0bed8ec60f52e7e44030e44c6a27940b73&amp;dn=utxo-snapshot-bitcoin-signet-258521&amp;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce</link>
 <guid isPermaLink="false">d1910a0bed8ec60f52e7e44030e44c6a27940b73</guid>
 <pubDate>Tue, 01 Jul 2025 12:00:00 +0000</pubDate>
 </item>
