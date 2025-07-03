@@ -11,10 +11,21 @@
       snapshots.</description>
     <language>en-US</language>
     <copyright>(c) 2025 Bitcoin Snapshots</copyright>
-    <pubDate>Tue, 01 Jul 2025 12:10:24 +0000</pubDate>
-    <lastBuildDate>Tue, 01 Jul 2025 12:10:24 +0000</lastBuildDate>
+    <pubDate>Wed, 03 Jul 2025 17:36:00 +0000</pubDate>
+    <lastBuildDate>Wed, 03 Jul 2025 17:36:00 +0000</lastBuildDate>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <ttl>30</ttl>
+
+    <item>
+      <title>utxo-880000.dat</title>
+      <description>Assume UTXO snapshot for Bitcoin mainnet at height 880000. Contains 184.82M
+        transaction outputs with 19.81M BTC supply. UTXO set size: 15 GB. Best block: CF20 82EC 5CCA
+        2880, MuHash: F25F 9A23 291F B097.</description>
+      <link>
+        magnet:?xt=urn:btih:559bd78170502971e15e97d7572e4c824f033492&amp;dn=utxo-880000.dat&amp;tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969&amp;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce</link>
+      <guid isPermaLink="false">559bd78170502971e15e97d7572e4c824f033492</guid>
+      <pubDate>Wed, 03 Jul 2025 17:36:00 +0000</pubDate>
+    </item>
 
     <item>
       <title>utxo-840000.dat</title>
@@ -23,7 +34,7 @@
         83A5, MuHash: 0467 BC5E 4265 A637.</description>
       <link>
         magnet:?xt=urn:btih:596c26cc709e213fdfec997183ff67067241440c&amp;dn=utxo-840000.dat&amp;xl=9772098907&amp;tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969&amp;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce</link>
-      <guid isPermaLink="false">8e95c088ef617b46b70d9756e251b5f44e90a915</guid>
+      <guid isPermaLink="false">596c26cc709e213fdfec997183ff67067241440c</guid>
       <pubDate>Tue, 01 Jul 2025 12:10:24 +0000</pubDate>
     </item>
 
