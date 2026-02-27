@@ -292,6 +292,57 @@
       display: inline-block;
       transform: rotate(180deg);
     }
+
+    .tabs {
+      display: flex;
+      margin-bottom: 0;
+    }
+
+    .tab-button {
+      padding: 8px 20px;
+      background-color: #232530;
+      border: 1px solid #333842;
+      border-bottom: none;
+      color: #888EA8;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 2px;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .tab-button:hover {
+      background-color: #2D303A;
+      color: #E0E0E0;
+    }
+
+    .tab-button.active {
+      background-color: #1F2128;
+      color: #F8F8F2;
+      border-bottom: 1px solid #1F2128;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .warning-box {
+      background-color: #3A1020;
+      border: 1px solid #FF5370;
+      border-radius: 4px;
+      padding: 10px 15px;
+      margin: 15px 0px;
+      font-size: 11px;
+      color: #FF5370;
+    }
+
+    .warning-box b {
+      color: #FF5370;
+    }
   </style>
 </head>
 
@@ -308,217 +359,253 @@
     <div class="main-content">
       <h2>Browse torrents</h2>
 
-      <table class="torrent-table" cellpadding="0" cellspacing="0">
-        <tr>
-          <th width="20">Type</th>
-          <th width="20">Network</th>
-          <th width="*">Name</th>
-          <th width="20">Height</th>
-          <th width="60">Best block</th>
-          <th width="60">MuHash</th>
-          <th width="40">TxOuts</th>
-          <th width="40">Supply (BTC)</th>
-          <th width="80">UTXO Set size</th>
-          <th width="60">Download</th>
-        </tr>
-        <tbody>
-          <tr>
-            <td>Assume UTXO</td>
-            <td>mainnet</td>
-            <td class="torrent-name">
-              <b>utxo-910000.dat</b>
-              <div class="torrent-description">since <a href="https://github.com/bitcoin/bitcoin/blob/d0f6d9953a15d7c7111d46dcb76ab2bb18e5dee3/src/kernel/chainparams.cpp#L184-L189" rel="nofollow" target="_blank">v30.0</a></div>
-            </td>
-            <td>
-              <a href="https://mempool.space/block/0000000000000000000108970acb9522ffd516eae17acddcb1bd16469194a821"
-                target="_blank">
-                910,000
-              </a>
-            </td>
-            <td>B1BD 1646 9194 A821</td>
-            <td>A5E5 EBED 9C44 1F90</td>
-            <td>167.82M</td>
-            <td>19.90M</td>
-            <td>11 GB</td>
-            <td>
-              <a href="magnet:?xt=urn:btih:7019437a2b1530624b100c0795cfc5f90b8322ca&dn=utxo-910000.dat&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969"
-                target="_blank">
-                <img
-                  src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
-                  width="16" height="16" />
-              </a>
-            </td>
-          </tr>
+      <div class="tabs">
+        <button class="tab-button active" onclick="switchTab('assumeutxo')">Assume UTXO</button>
+        <button class="tab-button" onclick="switchTab('snapshots')">Unsafe Snapshots</button>
+      </div>
 
+      <div id="tab-assumeutxo" class="tab-content active">
+        <table class="torrent-table" cellpadding="0" cellspacing="0">
           <tr>
-            <td>Assume UTXO</td>
-            <td>mainnet</td>
-            <td class="torrent-name">
-              <b>utxo-880000.dat</b>
-              <div class="torrent-description">since <a href="https://github.com/bitcoin/bitcoin/blob/d360a6ef565f7f387c01075c36f567d5bb362ebf/src/kernel/chainparams.cpp#L195-L200" rel="nofollow" target="_blank">v29.0</a></div>
-            </td>
-            <td>
-              <a href="https://mempool.space/block/000000000000000000010b17283c3c400507969a9c2afd1dcf2082ec5cca2880"
-                target="_blank">
-                880,000
-              </a>
-            </td>
-            <td>CF20 82EC 5CCA 2880</td>
-            <td>F25F 9A23 291F B097</td>
-            <td>184.82M</td>
-            <td>19.81M</td>
-            <td>15 GB</td>
-            <td>
-              <a href="magnet:?xt=urn:btih:559bd78170502971e15e97d7572e4c824f033492&dn=utxo-880000.dat&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969"
-                target="_blank">
-                <img
-                  src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
-                  width="16" height="16" />
-              </a>
-            </td>
+            <th width="20">Network</th>
+            <th width="*">Name</th>
+            <th width="20">Height</th>
+            <th width="60">Best block</th>
+            <th width="60">MuHash</th>
+            <th width="40">TxOuts</th>
+            <th width="40">Supply (BTC)</th>
+            <th width="80">UTXO Set size</th>
+            <th width="60">Download</th>
           </tr>
+          <tbody>
+            <tr>
+              <td>mainnet</td>
+              <td class="torrent-name">
+                <b>utxo-910000.dat</b>
+                <div class="torrent-description">since <a href="https://github.com/bitcoin/bitcoin/blob/d0f6d9953a15d7c7111d46dcb76ab2bb18e5dee3/src/kernel/chainparams.cpp#L184-L189" rel="nofollow" target="_blank">v30.0</a></div>
+              </td>
+              <td>
+                <a href="https://mempool.space/block/0000000000000000000108970acb9522ffd516eae17acddcb1bd16469194a821"
+                  target="_blank">
+                  910,000
+                </a>
+              </td>
+              <td>B1BD 1646 9194 A821</td>
+              <td>A5E5 EBED 9C44 1F90</td>
+              <td>167.82M</td>
+              <td>19.90M</td>
+              <td>11 GB</td>
+              <td>
+                <a href="magnet:?xt=urn:btih:7019437a2b1530624b100c0795cfc5f90b8322ca&dn=utxo-910000.dat&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969"
+                  target="_blank">
+                  <img
+                    src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
+                    width="16" height="16" />
+                </a>
+              </td>
+            </tr>
 
-          <tr>
-            <td>Assume UTXO</td>
-            <td>mainnet</td>
-            <td class="torrent-name">
-              <b>utxo-840000.dat</b>
-              <div class="torrent-description">since <a href="https://github.com/bitcoin/bitcoin/blob/e44d72b6480acb356f0a4793a76a5e2bc4e4118d/src/kernel/chainparams.cpp#L187-L192" rel="nofollow" target="_blank">v28.0</a></div>
-            </td>
-            <td>
-              <a href="https://mempool.space/block/0000000000000000000320283a032748cef8227873ff4872689bf23f1cda83a5"
-                target="_blank">
-                840,000
-              </a>
-            </td>
-            <td>689B F23F 1CDA 83A5</td>
-            <td>0467 BC5E 4265 A637</td>
-            <td>176.94M</td>
-            <td>19.68M</td>
-            <td>12 GB</td>
-            <td>
-              <a href="magnet:?xt=urn:btih:596c26cc709e213fdfec997183ff67067241440c&dn=utxo-840000.dat&xl=9772098907&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969"
-                target="_blank">
-                <img
-                  src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
-                  width="16" height="16" />
-              </a>
-            </td>
-          </tr>
+            <tr>
+              <td>mainnet</td>
+              <td class="torrent-name">
+                <b>utxo-880000.dat</b>
+                <div class="torrent-description">since <a href="https://github.com/bitcoin/bitcoin/blob/d360a6ef565f7f387c01075c36f567d5bb362ebf/src/kernel/chainparams.cpp#L195-L200" rel="nofollow" target="_blank">v29.0</a></div>
+              </td>
+              <td>
+                <a href="https://mempool.space/block/000000000000000000010b17283c3c400507969a9c2afd1dcf2082ec5cca2880"
+                  target="_blank">
+                  880,000
+                </a>
+              </td>
+              <td>CF20 82EC 5CCA 2880</td>
+              <td>F25F 9A23 291F B097</td>
+              <td>184.82M</td>
+              <td>19.81M</td>
+              <td>15 GB</td>
+              <td>
+                <a href="magnet:?xt=urn:btih:559bd78170502971e15e97d7572e4c824f033492&dn=utxo-880000.dat&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969"
+                  target="_blank">
+                  <img
+                    src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
+                    width="16" height="16" />
+                </a>
+              </td>
+            </tr>
 
-          <tr>
-            <td>Snapshot</td>
-            <td>mainnet</td>
-            <td class="torrent-name">
-              <b>utxo-snapshot-bitcoin-mainnet-920100</b>
-              <div class="torrent-description">pruned</div>
-            </td>
-            <td>
-              <a href="https://mempool.space/block/000000000000000000000520ed2b7e4038539bd02e7fb254caa067282454cd9b"
-                target="_blank">
-                920,100
-              </a>
-            </td>
-            <td>CAA0 6728 2454 CD9B</td>
-            <td>E301 24CA A9E6 1931</td>
-            <td>16.64M</td>
-            <td>19.93M</td>
-            <td>13 GB</td>
-            <td>
-              <a href="magnet:?xt=urn:btih:d142825206e01568078e06c8e000f30b1b2a0d11&dn=utxo-snapshot-bitcoin-mainnet-920100&tr=udp%3a%2f%2ftracker.bitcoin.sprovoost.nl%3a6969&tr=udp%3a%2f%2ftracker.torrent.eu.org%3a451%2fannounce&tr=udp%3a%2f%2ftracker.openbittorrent.com%3a80&tr=udp%3a%2f%2ftracker.leechers-paradise.org%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.coppersurfer.tk%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.opentrackr.org%3a1337%2fannounce&tr=udp%3a%2f%2fexplodie.org%3a6969%2fannounce"
-                target="_blank">
-                <img
-                  src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
-                  width="16" height="16" />
-              </a>
-            </td>
-          </tr>
+            <tr>
+              <td>mainnet</td>
+              <td class="torrent-name">
+                <b>utxo-840000.dat</b>
+                <div class="torrent-description">since <a href="https://github.com/bitcoin/bitcoin/blob/e44d72b6480acb356f0a4793a76a5e2bc4e4118d/src/kernel/chainparams.cpp#L187-L192" rel="nofollow" target="_blank">v28.0</a></div>
+              </td>
+              <td>
+                <a href="https://mempool.space/block/0000000000000000000320283a032748cef8227873ff4872689bf23f1cda83a5"
+                  target="_blank">
+                  840,000
+                </a>
+              </td>
+              <td>689B F23F 1CDA 83A5</td>
+              <td>0467 BC5E 4265 A637</td>
+              <td>176.94M</td>
+              <td>19.68M</td>
+              <td>12 GB</td>
+              <td>
+                <a href="magnet:?xt=urn:btih:596c26cc709e213fdfec997183ff67067241440c&dn=utxo-840000.dat&xl=9772098907&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969"
+                  target="_blank">
+                  <img
+                    src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
+                    width="16" height="16" />
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-          <tr>
-            <td>Snapshot</td>
-            <td>testnet4</td>
-            <td class="torrent-name">
-              <b>utxo-snapshot-bitcoin-testnet4-110034</b>
-              <div class="torrent-description">full, txindex, coinstatsindex, blockfilterindex</div>
-            </td>
-            <td>
-              <a href="https://mempool.space/testnet4/block/00000000000000019103e1945e3bd4792a5d9cdfbdc3fa2fc2248be33ae4cabe"
-                target="_blank">
-                110,034
-              </a>
-            </td>
-            <td>C224 8BE3 3AE4 CABE</td>
-            <td>E604 9DC8 E72B 981E</td>
-            <td>13.53M</td>
-            <td>5.50M</td>
-            <td>986 MB</td>
-            <td>
-              <a href="magnet:?xt=urn:btih:bd01f34d936d61816d7613c18213c2676185e3c4&dn=utxo-snapshot-bitcoin-testnet4-110034&tr=udp%3a%2f%2ftracker.leechers-paradise.org%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.opentrackr.org%3a1337%2fannounce&tr=udp%3a%2f%2ftracker.torrent.eu.org%3a451%2fannounce&tr=udp%3a%2f%2ftracker.coppersurfer.tk%3a6969%2fannounce&tr=udp%3a%2f%2fexplodie.org%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.openbittorrent.com%3a80&tr=udp%3a%2f%2ftracker.bitcoin.sprovoost.nl%3a6969"
-                target="_blank">
-                <img
-                  src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
-                  width="16" height="16" />
-              </a>
-            </td>
-          </tr>
+      <div id="tab-snapshots" class="tab-content">
+        <div class="warning-box">
+          <b>Warning:</b> Full blockchain snapshots require you to trust the snapshot provider. This is a less secure method.
+          The recommended approach is to use <a href="#" onclick="switchTab('assumeutxo'); return false;" style="color: #FF5370; text-decoration: underline;">Assume UTXO</a> files,
+          which are verified by your Bitcoin Core node against a hash hardcoded in the source code.
+        </div>
 
-          <tr>
-            <td>Snapshot</td>
-            <td>testnet3</td>
-            <td class="torrent-name">
-              <b>utxo-snapshot-bitcoin-testnet3-4840663</b>
-              <div class="torrent-description">pruned</div>
-            </td>
-            <td>
-              <a href="https://mempool.space/testnet/block/000000000000002fd042bf91696d9b77b57ccf195cfc8259a35ea90b09520351"
-                target="_blank">
-                4,840,663
-              </a>
-            </td>
-            <td>A35E A90B 0952 0351</td>
-            <td>B512 2F6E C4A5 D803</td>
-            <td>235.05M</td>
-            <td>21.00M</td>
-            <td>17 GB</td>
-            <td>
-              <a href="magnet:?xt=urn:btih:40f14641a1089d12273f0e65b0ecf21ddf40b350&dn=utxo-snapshot-bitcoin-testnet3-4840663&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969"
-                target="_blank">
-                <img
-                  src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
-                  width="16" height="16" />
-              </a>
-            </td>
-          </tr>
 
+        <table class="torrent-table" cellpadding="0" cellspacing="0">
           <tr>
-            <td>Snapshot</td>
-            <td>signet</td>
-            <td class="torrent-name">
-              <b>utxo-snapshot-bitcoin-signet-258521</b>
-              <div class="torrent-description">full, txindex, coinstatsindex, blockfilterindex</div>
-            </td>
-            <td>
-              <a href="https://mempool.space/signet/block/000000082f12ee773f2c173ad28ef621ea6781d51d23774cb9f628f809ada1d6"
-                target="_blank">
-                258,521
-              </a>
-            </td>
-            <td>B9F6 28F8 09AD A1D6</td>
-            <td>ADCD 6186 4CEB EDBA</td>
-            <td>33.65M</td>
-            <td>11.71M</td>
-            <td>2 GB</td>
-            <td>
-              <a href="magnet:?xt=urn:btih:d1910a0bed8ec60f52e7e44030e44c6a27940b73&dn=utxo-snapshot-bitcoin-signet-258521&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969"
-                target="_blank">
-                <img
-                  src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
-                  width="16" height="16" />
-              </a>
-            </td>
+            <th width="20">Network</th>
+            <th width="*">Name</th>
+            <th width="20">Height</th>
+            <th width="60">Best block</th>
+            <th width="60">MuHash</th>
+            <th width="40">TxOuts</th>
+            <th width="40">Supply (BTC)</th>
+            <th width="80">UTXO Set size</th>
+            <th width="60">Download</th>
           </tr>
-        </tbody>
-      </table>
+          <tbody>
+            <tr>
+              <td>mainnet</td>
+              <td class="torrent-name">
+                <b>utxo-snapshot-bitcoin-mainnet-920100</b>
+                <div class="torrent-description">pruned</div>
+              </td>
+              <td>
+                <a href="https://mempool.space/block/000000000000000000000520ed2b7e4038539bd02e7fb254caa067282454cd9b"
+                  target="_blank">
+                  920,100
+                </a>
+              </td>
+              <td>CAA0 6728 2454 CD9B</td>
+              <td>E301 24CA A9E6 1931</td>
+              <td>16.64M</td>
+              <td>19.93M</td>
+              <td>13 GB</td>
+              <td>
+                <a href="magnet:?xt=urn:btih:d142825206e01568078e06c8e000f30b1b2a0d11&dn=utxo-snapshot-bitcoin-mainnet-920100&tr=udp%3a%2f%2ftracker.bitcoin.sprovoost.nl%3a6969&tr=udp%3a%2f%2ftracker.torrent.eu.org%3a451%2fannounce&tr=udp%3a%2f%2ftracker.openbittorrent.com%3a80&tr=udp%3a%2f%2ftracker.leechers-paradise.org%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.coppersurfer.tk%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.opentrackr.org%3a1337%2fannounce&tr=udp%3a%2f%2fexplodie.org%3a6969%2fannounce"
+                  target="_blank">
+                  <img
+                    src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
+                    width="16" height="16" />
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>testnet4</td>
+              <td class="torrent-name">
+                <b>utxo-snapshot-bitcoin-testnet4-110034</b>
+                <div class="torrent-description">full, txindex, coinstatsindex, blockfilterindex</div>
+              </td>
+              <td>
+                <a href="https://mempool.space/testnet4/block/00000000000000019103e1945e3bd4792a5d9cdfbdc3fa2fc2248be33ae4cabe"
+                  target="_blank">
+                  110,034
+                </a>
+              </td>
+              <td>C224 8BE3 3AE4 CABE</td>
+              <td>E604 9DC8 E72B 981E</td>
+              <td>13.53M</td>
+              <td>5.50M</td>
+              <td>986 MB</td>
+              <td>
+                <a href="magnet:?xt=urn:btih:bd01f34d936d61816d7613c18213c2676185e3c4&dn=utxo-snapshot-bitcoin-testnet4-110034&tr=udp%3a%2f%2ftracker.leechers-paradise.org%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.opentrackr.org%3a1337%2fannounce&tr=udp%3a%2f%2ftracker.torrent.eu.org%3a451%2fannounce&tr=udp%3a%2f%2ftracker.coppersurfer.tk%3a6969%2fannounce&tr=udp%3a%2f%2fexplodie.org%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.openbittorrent.com%3a80&tr=udp%3a%2f%2ftracker.bitcoin.sprovoost.nl%3a6969"
+                  target="_blank">
+                  <img
+                    src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
+                    width="16" height="16" />
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>testnet3</td>
+              <td class="torrent-name">
+                <b>utxo-snapshot-bitcoin-testnet3-4840663</b>
+                <div class="torrent-description">pruned</div>
+              </td>
+              <td>
+                <a href="https://mempool.space/testnet/block/000000000000002fd042bf91696d9b77b57ccf195cfc8259a35ea90b09520351"
+                  target="_blank">
+                  4,840,663
+                </a>
+              </td>
+              <td>A35E A90B 0952 0351</td>
+              <td>B512 2F6E C4A5 D803</td>
+              <td>235.05M</td>
+              <td>21.00M</td>
+              <td>17 GB</td>
+              <td>
+                <a href="magnet:?xt=urn:btih:40f14641a1089d12273f0e65b0ecf21ddf40b350&dn=utxo-snapshot-bitcoin-testnet3-4840663&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969"
+                  target="_blank">
+                  <img
+                    src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
+                    width="16" height="16" />
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>signet</td>
+              <td class="torrent-name">
+                <b>utxo-snapshot-bitcoin-signet-258521</b>
+                <div class="torrent-description">full, txindex, coinstatsindex, blockfilterindex</div>
+              </td>
+              <td>
+                <a href="https://mempool.space/signet/block/000000082f12ee773f2c173ad28ef621ea6781d51d23774cb9f628f809ada1d6"
+                  target="_blank">
+                  258,521
+                </a>
+              </td>
+              <td>B9F6 28F8 09AD A1D6</td>
+              <td>ADCD 6186 4CEB EDBA</td>
+              <td>33.65M</td>
+              <td>11.71M</td>
+              <td>2 GB</td>
+              <td>
+                <a href="magnet:?xt=urn:btih:d1910a0bed8ec60f52e7e44030e44c6a27940b73&dn=utxo-snapshot-bitcoin-signet-258521&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969"
+                  target="_blank">
+                  <img
+                    src="data:image/gif;base64,R0lGODlhDAAMALMPAOXl5ewvErW1tebm5oocDkVFRePj47a2ts0WAOTk5MwVAIkcDesuEs0VAEZGRv///yH5BAEAAA8ALAAAAAAMAAwAAARB8MnnqpuzroZYzQvSNMroUeFIjornbK1mVkRzUgQSyPfbFi/dBRdzCAyJoTFhcBQOiYHyAABUDsiCxAFNWj6UbwQAOw=="
+                    width="16" height="16" />
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <script type="text/javascript">
+        function switchTab(tab) {
+          document.querySelectorAll('.tab-button').forEach(function(btn) { btn.classList.remove('active'); });
+          document.querySelectorAll('.tab-content').forEach(function(content) { content.classList.remove('active'); });
+          if (tab === 'assumeutxo') {
+            document.querySelectorAll('.tab-button')[0].classList.add('active');
+          } else {
+            document.querySelectorAll('.tab-button')[1].classList.add('active');
+          }
+          document.getElementById('tab-' + tab).classList.add('active');
+        }
+      </script>
 
     </div>
 
