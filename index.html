@@ -212,6 +212,10 @@
     .warning-box b {
       color: #FF5370;
     }
+
+    .torrent-table tr.network-separator td {
+      border-top: 2px solid #888EA8;
+    }
   </style>
 </head>
 
@@ -328,8 +332,8 @@
               </td>
             </tr>
 
-            <tr>
-              <td>testnet</td>
+            <tr class="network-separator">
+              <td>testnet3</td>
               <td class="torrent-name">
                 <b>utxo-testnet-2500000.dat</b>
                 <div class="torrent-description">since <a href="https://github.com/bitcoin/bitcoin/blob/44d8b13c81e5276eb610c99f227a4d090cc532f6/src/kernel/chainparams.cpp#L270-L275" rel="nofollow" target="_blank">v26.0</a></div>
@@ -407,7 +411,7 @@
               </td>
             </tr>
 
-            <tr>
+            <tr class="network-separator">
               <td>testnet4</td>
               <td class="torrent-name">
                 <b>utxo-snapshot-bitcoin-testnet4-110034</b>
@@ -434,7 +438,7 @@
               </td>
             </tr>
 
-            <tr>
+            <tr class="network-separator">
               <td>testnet3</td>
               <td class="torrent-name">
                 <b>utxo-snapshot-bitcoin-testnet3-4840663</b>
@@ -461,7 +465,7 @@
               </td>
             </tr>
 
-            <tr>
+            <tr class="network-separator">
               <td>signet</td>
               <td class="torrent-name">
                 <b>utxo-snapshot-bitcoin-signet-258521</b>
