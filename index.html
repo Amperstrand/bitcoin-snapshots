@@ -230,7 +230,7 @@
 
       <div class="tabs">
         <button class="tab-button active" onclick="switchTab('assumeutxo')">Assume UTXO</button>
-        <button class="tab-button" onclick="switchTab('snapshots')">Unsafe Snapshots</button>
+        <button class="tab-button" onclick="switchTab('snapshots')">FastSync</button>
       </div>
 
       <div id="tab-assumeutxo" class="tab-content active">
@@ -361,8 +361,8 @@
 
       <div id="tab-snapshots" class="tab-content">
         <div class="warning-box">
-          <b>Warning:</b> Full blockchain snapshots require you to trust the snapshot provider. This is a less secure method.
-          The recommended approach is to use <a href="#" onclick="switchTab('assumeutxo'); return false;" style="color: #FF5370; text-decoration: underline;">Assume UTXO</a> files,
+          <b>Warning:</b> FastSync snapshots require you to trust the snapshot provider. This is a <a href="https://docs.btcpayserver.org/Docker/fastsync/#what-are-the-downsides-of-fast-sync" target="_blank" rel="noopener noreferrer" style="color: #FF5370; text-decoration: underline;">less secure method</a>.
+          <br/>The recommended approach is to use <a href="#" onclick="switchTab('assumeutxo'); return false;" style="color: #FF5370; text-decoration: underline;">Assume UTXO</a> files,
           which are verified by your Bitcoin Core node against a hash hardcoded in the source code.
         </div>
 
