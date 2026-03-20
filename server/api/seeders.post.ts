@@ -1,4 +1,4 @@
-import { parseMagnet, scrapeInfoHash } from '~/server/utils/scrape'
+import { parseMagnet, scrapeInfoHash } from '../utils/scrape'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
