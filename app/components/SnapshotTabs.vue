@@ -11,52 +11,54 @@ const emit = defineEmits<{
 
 // ── Seeders ──────────────────────────────────────────────────────────────────
 
-interface SeederData {
-  seeders: number | null
-  leechers: number | null
-  completed: number | null
-}
-
-// Keyed by info hash extracted from magnet link
-const seederMap = ref<Map<string, SeederData | 'loading'>>(new Map())
+// Keyed by info hash — value is seeder count, null if unavailable, or 'loading'
+const seederMap = ref<Map<string, number | null | 'loading'>>(new Map())
 
 function getInfoHash(magnet: string): string {
   const match = magnet.match(/xt=urn:btih:([0-9a-fA-F]{40})/i)
   return match ? match[1].toLowerCase() : ''
 }
 
-async function fetchSeeders(magnet: string) {
-  const hash = getInfoHash(magnet)
-  if (!hash || seederMap.value.get(hash) !== undefined) return
-  seederMap.value.set(hash, 'loading')
+async function fetchSeeders(magnets: string[]) {
+  const unseen = magnets.filter(m => {
+    const hash = getInfoHash(m)
+    return hash && seederMap.value.get(hash) === undefined
+  })
+  if (unseen.length === 0) return
+
+  unseen.forEach(m => seederMap.value.set(getInfoHash(m), 'loading'))
+
   try {
-    const data = await $fetch<SeederData>('/api/seeders', {
-      query: { magnet: encodeURIComponent(magnet) },
+    const result = await $fetch<Record<string, number | null>>('/api/seeders', {
+      method: 'POST',
+      body: { magnets: unseen },
     })
-    seederMap.value.set(hash, data)
+    for (const [hash, count] of Object.entries(result)) {
+      seederMap.value.set(hash, count)
+    }
   } catch {
-    seederMap.value.set(hash, { seeders: null, leechers: null, completed: null })
+    unseen.forEach(m => seederMap.value.set(getInfoHash(m), null))
   }
 }
 
 function seederLabel(magnet: string): string {
   const hash = getInfoHash(magnet)
   const entry = seederMap.value.get(hash)
-  if (!entry || entry === 'loading') return '…'
-  if (entry.seeders === null) return '—'
-  return String(entry.seeders)
+  if (entry === undefined || entry === 'loading') return '…'
+  if (entry === null) return '—'
+  return String(entry)
 }
 
 // Fetch on mount for the initial tab's rows
 onMounted(() => {
   const groups = props.activeTab === 'assumeutxo' ? assumeUtxoGroups : fastSyncGroups
-  groups.flatMap(g => g.entries).forEach(r => fetchSeeders(r.magnet))
+  fetchSeeders(groups.flatMap(g => g.entries).map(r => r.magnet))
 })
 
 // Fetch when switching tabs
 watch(() => props.activeTab, (tab) => {
   const groups = tab === 'assumeutxo' ? assumeUtxoGroups : fastSyncGroups
-  groups.flatMap(g => g.entries).forEach(r => fetchSeeders(r.magnet))
+  fetchSeeders(groups.flatMap(g => g.entries).map(r => r.magnet))
 })
 
 // ── Copy magnet ───────────────────────────────────────────────────────────────
