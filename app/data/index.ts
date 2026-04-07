@@ -211,7 +211,7 @@ export const fastSyncGroups: NetworkGroup<FastSyncEntry>[] = [
         bestBlock: ['1864 721D', 'E027 5DD8'],
         muhash: ['877D A65B', '0E16 CECD'],
         txouts: '64.21M', supply: '12.72M',
-        magnet: 'magnet:?xt=urn:btih:a3ab2d68b598133d3fb8b6bd7ea09295c2c906b3&dn=utxo-snapshot-bitcoin-signet-298958&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969',
+        magnet: 'magnet:?xt=urn:btih:bca420caedbd132fb6e256b6296d39723e306043&dn=utxo-snapshot-bitcoin-signet-298958&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce',
       },
     ],
   },
