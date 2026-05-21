@@ -131,15 +131,21 @@ async function copyMagnet(magnet: string) {
             <td>{{ row.supply }}</td>
             <td class="seeders">{{ seederLabel(row.magnet) }}</td>
             <td>
-              <a
-                class="dl-btn"
-                :href="row.magnet"
-                target="_blank"
-                @contextmenu.prevent="copyMagnet(row.magnet)"
-              >
-                <svg v-if="copiedMagnet !== row.magnet" viewBox="0 0 16 16"><path d="M8 2v9M4 8l4 4 4-4M2 14h12"/></svg>
-                {{ copiedMagnet === row.magnet ? 'Copied!' : 'Torrent' }}
-              </a>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <a
+                  class="dl-btn"
+                  :href="row.magnet"
+                  target="_blank"
+                  @contextmenu.prevent="copyMagnet(row.magnet)"
+                >
+                  <svg v-if="copiedMagnet !== row.magnet" viewBox="0 0 16 16"><path d="M8 2v9M4 8l4 4 4-4M2 14h12"/></svg>
+                  {{ copiedMagnet === row.magnet ? 'Copied!' : 'Torrent' }}
+                </a>
+                <a class="dl-btn dl-btn-direct" :href="row.url" target="_blank">
+                  <svg viewBox="0 0 16 16"><path d="M8 2v9M4 8l4 4 4-4M2 14h12"/></svg>
+                  Direct
+                </a>
+              </div>
             </td>
           </tr>
         </template>
@@ -189,15 +195,21 @@ async function copyMagnet(magnet: string) {
             <td>{{ row.supply }}</td>
             <td class="seeders">{{ seederLabel(row.magnet) }}</td>
             <td>
-              <a
-                class="dl-btn"
-                :href="row.magnet"
-                target="_blank"
-                @contextmenu.prevent="copyMagnet(row.magnet)"
-              >
-                <svg v-if="copiedMagnet !== row.magnet" viewBox="0 0 16 16"><path d="M8 2v9M4 8l4 4 4-4M2 14h12"/></svg>
-                {{ copiedMagnet === row.magnet ? 'Copied!' : 'Torrent' }}
-              </a>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <a
+                  class="dl-btn"
+                  :href="row.magnet"
+                  target="_blank"
+                  @contextmenu.prevent="copyMagnet(row.magnet)"
+                >
+                  <svg v-if="copiedMagnet !== row.magnet" viewBox="0 0 16 16"><path d="M8 2v9M4 8l4 4 4-4M2 14h12"/></svg>
+                  {{ copiedMagnet === row.magnet ? 'Copied!' : 'Torrent' }}
+                </a>
+                <a class="dl-btn dl-btn-direct" :href="row.url" target="_blank">
+                  <svg viewBox="0 0 16 16"><path d="M8 2v9M4 8l4 4 4-4M2 14h12"/></svg>
+                  Direct
+                </a>
+              </div>
             </td>
           </tr>
         </template>

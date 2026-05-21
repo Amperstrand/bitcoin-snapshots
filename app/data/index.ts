@@ -11,6 +11,7 @@ export interface SnapshotEntry {
   chainTxs: string
   supply: string
   magnet: string
+  url: string
 }
 
 export interface FastSyncEntry {
@@ -24,6 +25,7 @@ export interface FastSyncEntry {
   txouts: string
   supply: string
   magnet: string
+  url: string
 }
 
 export interface NetworkGroup<T> {
@@ -44,6 +46,7 @@ export const assumeUtxoGroups: NetworkGroup<SnapshotEntry>[] = [
         hashSerialized: ['D041 25E2', 'A602 5050'],
         chainTxs: '1,305,397,408', supply: '19.98M',
         magnet: 'magnet:?xt=urn:btih:3492d082655d173d3459f7a5e454f3dd4ed0101b&dn=utxo-935000.dat&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-935000.dat',
       },
       {
         file: 'utxo-910000.dat',
@@ -54,6 +57,7 @@ export const assumeUtxoGroups: NetworkGroup<SnapshotEntry>[] = [
         hashSerialized: ['96FA 59A4', 'DA2F 1568'],
         chainTxs: '1,226,586,151', supply: '19.90M',
         magnet: 'magnet:?xt=urn:btih:7019437a2b1530624b100c0795cfc5f90b8322ca&dn=utxo-910000.dat&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-910000.dat',
       },
       {
         file: 'utxo-880000.dat',
@@ -64,6 +68,7 @@ export const assumeUtxoGroups: NetworkGroup<SnapshotEntry>[] = [
         hashSerialized: ['5378 2175', 'FBAD CEA9'],
         chainTxs: '1,145,604,538', supply: '19.81M',
         magnet: 'magnet:?xt=urn:btih:559bd78170502971e15e97d7572e4c824f033492&dn=utxo-880000.dat&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-880000.dat',
       },
       {
         file: 'utxo-840000.dat',
@@ -74,6 +79,7 @@ export const assumeUtxoGroups: NetworkGroup<SnapshotEntry>[] = [
         hashSerialized: ['8F77 6873', '1076 8F96'],
         chainTxs: '991,032,194', supply: '19.68M',
         magnet: 'magnet:?xt=urn:btih:596c26cc709e213fdfec997183ff67067241440c&dn=utxo-840000.dat&xl=9772098907&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-840000.dat',
       },
     ],
   },
@@ -89,6 +95,7 @@ export const assumeUtxoGroups: NetworkGroup<SnapshotEntry>[] = [
         hashSerialized: ['F8F3 7FB2', '9C47 94B0'],
         chainTxs: '14,141,057', supply: '5.99M',
         magnet: 'magnet:?xt=urn:btih:25733a7e451ca435f2901921b805c167f560424d&dn=utxo-testnet4-120000.dat&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-testnet4-120000.dat',
       },
       {
         file: 'utxo-testnet4-90000.dat',
@@ -99,6 +106,7 @@ export const assumeUtxoGroups: NetworkGroup<SnapshotEntry>[] = [
         hashSerialized: ['8FDB C957', '46F8 B9B5'],
         chainTxs: '11,347,043', supply: '4.49M',
         magnet: 'magnet:?xt=urn:btih:7bc8da992eccff153c342512e15269c45e8ee6c6&dn=utxo-testnet4-90000.dat&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-testnet4-90000.dat',
       },
     ],
   },
@@ -114,6 +122,7 @@ export const assumeUtxoGroups: NetworkGroup<SnapshotEntry>[] = [
         hashSerialized: ['AF46 8982', 'A0C8 DB2A'],
         chainTxs: '536,078,574', supply: '20.99M',
         magnet: 'magnet:?xt=urn:btih:dfe62321ec8e9538a47e4f019d34a88510eaa751&dn=utxo-testnet-4840000.dat&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-testnet-4840000.dat',
       },
       {
         file: 'utxo-testnet-2500000.dat',
@@ -124,6 +133,7 @@ export const assumeUtxoGroups: NetworkGroup<SnapshotEntry>[] = [
         hashSerialized: ['6C3C A68D', 'B807 1BE7'],
         chainTxs: '66,484,552', supply: '20.99M',
         magnet: 'magnet:?xt=urn:btih:4063ff1580db4923e6dbc3ac6cab3baf4cf19bc4&dn=utxo-testnet-2500000.dat&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-testnet-2500000.dat',
       },
     ],
   },
@@ -139,6 +149,7 @@ export const assumeUtxoGroups: NetworkGroup<SnapshotEntry>[] = [
         hashSerialized: ['888B BD21', '60D1 4545'],
         chainTxs: '28,547,497', supply: '12.49M',
         magnet: 'magnet:?xt=urn:btih:304c3ee0ac2ce34ba64173b50d1950976544e8a3&dn=utxo-signet-290000.dat&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-signet-290000.dat',
       },
       {
         file: 'utxo-signet-160000.dat',
@@ -149,6 +160,7 @@ export const assumeUtxoGroups: NetworkGroup<SnapshotEntry>[] = [
         hashSerialized: ['B7D7 0783', 'DBDF 928A'],
         chainTxs: '2,289,496', supply: '7.99M',
         magnet: 'magnet:?xt=urn:btih:ae77ab03cbf8e2cb5971c1971b9bf6ee91d9a72b&dn=utxo-signet-160000.dat&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-signet-160000.dat',
       },
     ],
   },
@@ -167,6 +179,7 @@ export const fastSyncGroups: NetworkGroup<FastSyncEntry>[] = [
         muhash: ['881A CA64', 'B5C9 DF46'],
         txouts: '164.89M', supply: '20.00M',
         magnet: 'magnet:?xt=urn:btih:ff50001d942b536fe968912da3a937c2b9a52995&dn=utxo-snapshot-bitcoin-mainnet-941429&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-snapshot-bitcoin-mainnet-941429/',
       },
     ],
   },
@@ -182,6 +195,7 @@ export const fastSyncGroups: NetworkGroup<FastSyncEntry>[] = [
         muhash: ['E604 9DC8', 'E72B 981E'],
         txouts: '13.53M', supply: '5.50M',
         magnet: 'magnet:?xt=urn:btih:bd01f34d936d61816d7613c18213c2676185e3c4&dn=utxo-snapshot-bitcoin-testnet4-110034&tr=udp%3a%2f%2ftracker.leechers-paradise.org%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.opentrackr.org%3a1337%2fannounce&tr=udp%3a%2f%2ftracker.torrent.eu.org%3a451%2fannounce&tr=udp%3a%2f%2ftracker.coppersurfer.tk%3a6969%2fannounce&tr=udp%3a%2f%2fexplodie.org%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.openbittorrent.com%3a80&tr=udp%3a%2f%2ftracker.bitcoin.sprovoost.nl%3a6969',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-snapshot-bitcoin-testnet4-110034/',
       },
     ],
   },
@@ -197,6 +211,7 @@ export const fastSyncGroups: NetworkGroup<FastSyncEntry>[] = [
         muhash: ['B512 2F6E', 'C4A5 D803'],
         txouts: '235.05M', supply: '21.00M',
         magnet: 'magnet:?xt=urn:btih:40f14641a1089d12273f0e65b0ecf21ddf40b350&dn=utxo-snapshot-bitcoin-testnet3-4840663&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-snapshot-bitcoin-testnet3-4840663/',
       },
     ],
   },
@@ -212,6 +227,7 @@ export const fastSyncGroups: NetworkGroup<FastSyncEntry>[] = [
         muhash: ['877D A65B', '0E16 CECD'],
         txouts: '64.21M', supply: '12.72M',
         magnet: 'magnet:?xt=urn:btih:bca420caedbd132fb6e256b6296d39723e306043&dn=utxo-snapshot-bitcoin-signet-298958&tr=udp%3A%2F%2Ftracker.bitcoin.sprovoost.nl%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce',
+        url: 'https://files-vps02.jaonoctus.dev/utxo-snapshot-bitcoin-signet-298958/',
       },
     ],
   },
