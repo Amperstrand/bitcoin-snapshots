@@ -9,58 +9,6 @@ const emit = defineEmits<{
   switchTab: [tab: 'assumeutxo' | 'snapshots']
 }>()
 
-// ── Seeders ──────────────────────────────────────────────────────────────────
-
-// Keyed by info hash — value is seeder count, null if unavailable, or 'loading'
-const seederMap = ref<Map<string, number | null | 'loading'>>(new Map())
-
-function getInfoHash(magnet: string): string {
-  const match = magnet.match(/xt=urn:btih:([0-9a-fA-F]{40})/i)
-  return match ? match[1].toLowerCase() : ''
-}
-
-async function fetchSeeders(magnets: string[]) {
-  const unseen = magnets.filter(m => {
-    const hash = getInfoHash(m)
-    return hash && seederMap.value.get(hash) === undefined
-  })
-  if (unseen.length === 0) return
-
-  unseen.forEach(m => seederMap.value.set(getInfoHash(m), 'loading'))
-
-  try {
-    const result = await $fetch<Record<string, number | null>>('/api/seeders', {
-      method: 'POST',
-      body: { magnets: unseen },
-    })
-    for (const [hash, count] of Object.entries(result)) {
-      seederMap.value.set(hash, count)
-    }
-  } catch {
-    unseen.forEach(m => seederMap.value.set(getInfoHash(m), null))
-  }
-}
-
-function seederLabel(magnet: string): string {
-  const hash = getInfoHash(magnet)
-  const entry = seederMap.value.get(hash)
-  if (entry === undefined || entry === 'loading') return '…'
-  if (entry === null) return '—'
-  return String(entry)
-}
-
-// Fetch on mount for the initial tab's rows
-onMounted(() => {
-  const groups = props.activeTab === 'assumeutxo' ? assumeUtxoGroups : fastSyncGroups
-  fetchSeeders(groups.flatMap(g => g.entries).map(r => r.magnet))
-})
-
-// Fetch when switching tabs
-watch(() => props.activeTab, (tab) => {
-  const groups = tab === 'assumeutxo' ? assumeUtxoGroups : fastSyncGroups
-  fetchSeeders(groups.flatMap(g => g.entries).map(r => r.magnet))
-})
-
 // ── Copy magnet ───────────────────────────────────────────────────────────────
 
 const copiedMagnet = ref<string | null>(null)
@@ -108,14 +56,13 @@ async function copyMagnet(magnet: string) {
           <th>Hash Serialized</th>
           <th>Chain Txs</th>
           <th>Supply</th>
-          <th style="text-align:center">Seeders</th>
           <th>Download</th>
         </tr>
       </thead>
       <tbody>
         <template v-for="group in assumeUtxoGroups" :key="group.network">
           <tr class="net-row">
-            <td colspan="8"><span :class="['nbadge', group.network]">{{ group.network.toUpperCase() }}</span></td>
+            <td colspan="7"><span :class="['nbadge', group.network]">{{ group.network.toUpperCase() }}</span></td>
           </tr>
           <tr v-for="row in group.entries" :key="row.file">
             <td>
@@ -129,7 +76,6 @@ async function copyMagnet(magnet: string) {
             <td class="hash">{{ row.hashSerialized[0] }}<br>{{ row.hashSerialized[1] }}</td>
             <td>{{ row.chainTxs }}</td>
             <td>{{ row.supply }}</td>
-            <td class="seeders">{{ seederLabel(row.magnet) }}</td>
             <td>
               <div style="display:flex;flex-direction:column;gap:4px">
                 <a
@@ -172,14 +118,13 @@ async function copyMagnet(magnet: string) {
           <th>MuHash</th>
           <th>TxOuts</th>
           <th>Supply</th>
-          <th style="text-align:center">Seeders</th>
           <th>Download</th>
         </tr>
       </thead>
       <tbody>
         <template v-for="group in fastSyncGroups" :key="group.network">
           <tr class="net-row">
-            <td colspan="8"><span :class="['nbadge', group.network]">{{ group.network.toUpperCase() }}</span></td>
+            <td colspan="7"><span :class="['nbadge', group.network]">{{ group.network.toUpperCase() }}</span></td>
           </tr>
           <tr v-for="row in group.entries" :key="row.file">
             <td>
@@ -193,7 +138,6 @@ async function copyMagnet(magnet: string) {
             <td class="hash">{{ row.muhash[0] }}<br>{{ row.muhash[1] }}</td>
             <td>{{ row.txouts }}</td>
             <td>{{ row.supply }}</td>
-            <td class="seeders">{{ seederLabel(row.magnet) }}</td>
             <td>
               <div style="display:flex;flex-direction:column;gap:4px">
                 <a
