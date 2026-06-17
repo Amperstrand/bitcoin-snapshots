@@ -1,0 +1,52 @@
+name: Deploy to nsite
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'server/**'
+      - 'public/**'
+      - 'nuxt.config.ts'
+      - 'package.json'
+      - '.github/workflows/deploy-to-nsite.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nsite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    name: Build + deploy to nsite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build static site
+        run: npm run generate
+
+      - name: Deploy to nsite
+        uses: sandwichfarm/nsite-action@35466ff9509a5c063ca943d1f727f9b129a37970
+        with:
+          sec: ${{ secrets.NSEC_HEX }}
+          directory: './.output/public'
+          name: 'bitcoin-snapshots'
+          relays: |
+            wss://relay.damus.io
+            wss://nos.lol
+            wss://relay.tollgate.me
+          servers: |
+            https://blossom.psbt.me
+            https://blossom.primal.net
+            https://blossom.tollgate.me
