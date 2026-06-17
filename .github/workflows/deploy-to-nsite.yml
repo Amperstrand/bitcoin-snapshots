@@ -41,7 +41,7 @@ jobs:
         with:
           sec: ${{ secrets.NSEC_HEX }}
           directory: './.output/public'
-          name: 'bitcoin-snapshots'
+          name: 'btc-snaps'
           relays: |
             wss://relay.damus.io
             wss://nos.lol
