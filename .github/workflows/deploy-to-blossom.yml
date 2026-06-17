@@ -1,0 +1,237 @@
+name: Deploy Latest Snapshot to Blossom
+
+on:
+  workflow_dispatch:
+    inputs:
+      snapshot_url:
+        description: 'Direct download URL for the snapshot file'
+        required: true
+        default: 'https://files-vps02.jaonoctus.dev/utxo-935000.dat'
+      snapshot_name:
+        description: 'Filename for the snapshot'
+        required: true
+        default: 'utxo-935000.dat'
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Upload to Blossom via Cashu
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Blossom client + Cashu
+        run: npm install blossom-client-sdk @cashu/cashu-ts @noble/curves @noble/hashes
+
+      - name: Download snapshot
+        run: |
+          curl -L --retry 5 -o snapshot.dat "${{ inputs.snapshot_url }}"
+          ls -lh snapshot.dat
+
+      - name: Compute SHA-256
+        id: sha
+        run: |
+          HASH=$(sha256sum snapshot.dat | awk '{print $1}')
+          SIZE=$(stat -c%s snapshot.dat)
+          echo "sha256=$HASH" >> $GITHUB_OUTPUT
+          echo "size=$SIZE" >> $GITHUB_OUTPUT
+          echo "SHA-256: $HASH"
+          echo "Size: $SIZE bytes ($((SIZE / 1073741824)) GB)"
+
+      - name: Check if already on Blossom
+        id: exists
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -I "https://blossom.psbt.me/${{ steps.sha.outputs.sha256 }}")
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          if [ "$STATUS" = "200" ] || [ "$STATUS" = "206" ]; then
+            echo "already_exists=true" >> $GITHUB_OUTPUT
+            echo "File already on Blossom — skipping upload"
+          else
+            echo "already_exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload to Blossom (presigned URL path)
+        if: steps.exists.outputs.already_exists != 'true'
+        env:
+          BLOSSOM_SERVER: https://blossom.psbt.me
+          MINT_URL: https://testnut.cashu.exchange
+          UPLOADER_NSEC: ${{ secrets.UPLOADER_NSEC }}
+          FILE_SHA256: ${{ steps.sha.outputs.sha256 }}
+          FILE_SIZE: ${{ steps.sha.outputs.size }}
+        run: |
+          node << 'SCRIPT'
+          const { createUploadAuth, encodeAuthorizationHeader } = require('blossom-client-sdk');
+          const { Wallet, Mint, getEncodedToken } = require('@cashu/cashu-ts');
+          const { schnorr } = require('@noble/curves/secp256k1');
+          const { bytesToHex, hexToBytes } = require('@noble/hashes/utils');
+          const crypto = require('crypto');
+          const fs = require('fs');
+
+          const SERVER = process.env.BLOSSOM_SERVER;
+          const MINT = process.env.MINT_URL;
+          const nsec = process.env.UPLOADER_NSEC;
+          const sha256 = process.env.FILE_SHA256;
+          const size = parseInt(process.env.FILE_SIZE, 10);
+
+          // Decode nsec to private key
+          // nsec is bech32 encoded — decode manually
+          function decodeNsec(nsec) {
+            const charset = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l';
+            let data = 0, bits = 0;
+            const prefix = 'nsec';
+            let pos = prefix.length + 1; // skip "nsec1"
+            const groups = [];
+            for (; pos < nsec.length - 6; pos++) {
+              const val = charset.indexOf(nsec[pos]);
+              data = (data << 5) | val;
+              bits += 5;
+              if (bits >= 8) {
+                groups.push((data >> (bits - 8)) & 0xff);
+                bits -= 8;
+              }
+            }
+            return Buffer.from(groups).toString('hex');
+          }
+
+          const privkey = decodeNsec(nsec);
+          const pubkey = bytesToHex(schnorr.getPublicKey(hexToBytes(privkey)));
+
+          function signEvent(event) {
+            const serialized = JSON.stringify([0, event.pubkey, event.created_at, event.kind, event.tags, event.content]);
+            const id = crypto.createHash('sha256').update(serialized).digest('hex');
+            const sig = bytesToHex(schnorr.sign(hexToBytes(id), hexToBytes(privkey)));
+            return { ...event, id, sig };
+          }
+
+          async function main() {
+            console.log(`Uploading ${size} bytes (sha256: ${sha256.slice(0,16)}...) to ${SERVER}`);
+
+            // Step 1: Mint Cashu tokens for payment
+            const sizeMB = size / 1_000_000;
+            const requiredSats = Math.max(Math.ceil(sizeMB) + 1, 2);
+            console.log(`Minting ${requiredSats} sats from ${MINT}...`);
+
+            const mint = new Mint(MINT);
+            const wallet = new Wallet(mint, { unit: 'sat' });
+            await wallet.loadMint();
+            const quote = await wallet.createMintQuoteBolt11(requiredSats);
+            await new Promise(r => setTimeout(r, 3000));
+            const proofs = await wallet.mintProofsBolt11(requiredSats, quote.quote);
+            const token = getEncodedToken({ mint: MINT, proofs, unit: 'sat' });
+            console.log(`Minted ${requiredSats} sats`);
+
+            // Step 2: Get presigned URL from Blossom
+            console.log('Requesting presigned upload URL...');
+            const auth = createUploadAuth(signEvent, sha256, { type: 'upload', expiration: Math.floor(Date.now()/1000) + 3600 });
+            const presignResp = await fetch(`${SERVER}/upload/presign`, {
+              method: 'POST',
+              headers: {
+                'Authorization': encodeAuthorizationHeader(auth),
+                'X-Content-Length': String(size),
+                'X-Content-Type': 'application/octet-stream',
+                'X-Cashu': token,
+              },
+            });
+
+            if (presignResp.status === 402) {
+              console.error('Payment required. X-Price-Sats:', presignResp.headers.get('x-price-sats'));
+              process.exit(1);
+            }
+            if (!presignResp.ok) {
+              console.error(`Presign failed: ${presignResp.status} ${await presignResp.text()}`);
+              process.exit(1);
+            }
+
+            const { url: uploadUrl } = await presignResp.json();
+            console.log('Got presigned URL');
+
+            // Step 3: Upload file to R2 via presigned URL
+            console.log('Uploading to R2 (this may take a while)...');
+            const fileStream = fs.createReadStream('snapshot.dat');
+            const r2Resp = await fetch(uploadUrl, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/octet-stream' },
+              body: fileStream,
+              duplex: 'half',
+            });
+
+            if (!r2Resp.ok) {
+              console.error(`R2 upload failed: ${r2Resp.status} ${await r2Resp.text()}`);
+              process.exit(1);
+            }
+            console.log('R2 upload complete');
+
+            // Step 4: Register blob on Blossom
+            console.log('Registering blob...');
+            const completeAuth = createUploadAuth(signEvent, sha256, { type: 'upload', expiration: Math.floor(Date.now()/1000) + 3600 });
+            const completeResp = await fetch(`${SERVER}/upload/complete`, {
+              method: 'POST',
+              headers: {
+                'Authorization': encodeAuthorizationHeader(completeAuth),
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ sha256, content_type: 'application/octet-stream' }),
+            });
+
+            if (!completeResp.ok) {
+              console.error(`Complete failed: ${completeResp.status} ${await completeResp.text()}`);
+              process.exit(1);
+            }
+            const descriptor = await completeResp.json();
+            console.log('Blob registered:', descriptor);
+
+            // Step 5: Extend storage with Cashu payment
+            console.log('Paying for 30-day storage...');
+            const mint2 = new Mint(MINT);
+            const wallet2 = new Wallet(mint2, { unit: 'sat' });
+            await wallet2.loadMint();
+            const quote2 = await wallet2.createMintQuoteBolt11(requiredSats);
+            await new Promise(r => setTimeout(r, 3000));
+            const proofs2 = await wallet2.mintProofsBolt11(requiredSats, quote2.quote);
+            const token2 = getEncodedToken({ mint: MINT, proofs: proofs2, unit: 'sat' });
+
+            const extendAuth = createUploadAuth(signEvent, sha256, { type: 'upload', expiration: Math.floor(Date.now()/1000) + 3600 });
+            const extendResp = await fetch(`${SERVER}/${sha256}`, {
+              method: 'PATCH',
+              headers: {
+                'Authorization': encodeAuthorizationHeader(extendAuth),
+                'X-Cashu': token2,
+              },
+            });
+
+            if (extendResp.ok) {
+              const extended = await extendResp.json();
+              console.log('Storage extended to:', new Date(extended.expires_at * 1000).toISOString());
+            } else {
+              console.error('Extend failed:', extendResp.status, await extendResp.text());
+            }
+
+            console.log(`\n✅ Snapshot deployed!`);
+            console.log(`   URL: https://blossom.psbt.me/${sha256}`);
+            console.log(`   Size: ${(size / 1e9).toFixed(2)} GB`);
+            console.log(`   Paid: ${requiredSats * 2} test sats`);
+          }
+
+          main().catch(e => { console.error('Failed:', e); process.exit(1); });
+          SCRIPT
+
+      - name: Verify download
+        run: |
+          echo "Testing download from Blossom..."
+          START=$(date +%s)
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -I "https://blossom.psbt.me/${{ steps.sha.outputs.sha256 }}")
+          END=$(date +%s)
+          echo "HEAD response: $STATUS (${((END - START))}s)"
+          if [ "$STATUS" = "200" ] || [ "$STATUS" = "206" ]; then
+            echo "✅ File is live on Blossom!"
+            echo "URL: https://blossom.psbt.me/${{ steps.sha.outputs.sha256 }}"
+          else
+            echo "❌ File not available (status $STATUS)"
+          fi
